@@ -30,21 +30,21 @@
 </head>
 
 <body class="bg-gradient-to-br from-orange-50 via-white to-pink-50 font-sans">
-    <nav class="fixed w-full top-0 z-50 glass border-b border-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center">
-                    <a href="index.html" class="flex items-center space-x-3 text-3xl font-bold">
-                        <i class="bi bi-cake2 text-4xl text-red-500"></i>
-                        <span class="font-serif gradient-text">Lela Cakes</span>
-                    </a>
-                </div>
-                
+    <nav class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-lg">
+    <div class="max-w-7xl mx-auto px-8">
+        <div class="flex justify-between items-center h-20">
+            <div class="flex items-center">
+                <a href="index.php" class="flex items-center space-x-3 text-3xl font-bold">
+                    <i class="bi bi-cake2 text-4xl text-red-500"></i>
+                    <span class="font-serif gradient-text">Lela Cakes</span>
+                </a>
+            </div>
+            
                 <div class="flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">Início</a>
-                    <a href="pages/catalogo.html" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">Catálogo</a>
-                    <a href="pages/montebolo.html" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">Monte seu Bolo</a>
-                    <a href="pages/login.html" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-red-600 hover:to-red-700">Login</a>
+                <a href="index.php" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">Início</a>
+                <a href="pages/catalogo.php" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">Catálogo</a>
+                <a href="pages/montebolo.php" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">Monte seu Bolo</a>
+                <a href="pages/login.php" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-red-600 hover:to-red-700">Login</a>
                 </div>
             </div>
         </div>
@@ -175,7 +175,7 @@
             <div class="glass rounded-3xl p-12 shadow-2xl">
                 <h2 class="text-5xl font-serif font-bold text-white mb-6">Monte também seu orçamento</h2>
                 <p class="text-xl text-white mb-8 leading-relaxed opacity-90">Monte também seu orçamento para casamentos, aniversários e festas. Transformamos seus sonhos doces em realidade!</p>
-                <a href="pages/montebolo.html" class="inline-block bg-white text-red-500 px-12 py-4 rounded-full text-xl font-bold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:bg-gray-50">
+                <a href="pages/montebolo.php" class="inline-block bg-white text-red-500 px-12 py-4 rounded-full text-xl font-bold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:bg-gray-50">
                     Solicitar Pedido
                 </a>
             </div>

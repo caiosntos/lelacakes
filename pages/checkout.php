@@ -29,26 +29,26 @@
     </script>
 </head>
 <body class="bg-gradient-to-br from-white via-white to-white-50 font-sans">
-    <nav class="fixed w-full top-0 z-50 glass-effect shadow-lg">
+    <nav class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-lg">
         <div class="max-w-7xl mx-auto px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <a href="../index.html" class="flex items-center space-x-3 text-3xl font-bold">
+                    <a href="../index.php" class="flex items-center space-x-3 text-3xl font-bold">
                         <i class="bi bi-cake2 text-4xl text-red-500"></i>
                         <span class="font-serif gradient-text">Lela Cakes</span>
                     </a>
                 </div>
                 <div class="flex items-center space-x-8">
-                    <a href="../index.html" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">
+                    <a href="../index.php" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">
                         Início
                     </a>
-                    <a href="catalogo.html" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">
+                    <a href="catalogo.php" class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md">
                         Catálogo
                     </a>
                  <div class="relative">
                         <button id="userMenuButton" class="text-gray-700 hover:text-red-500 p-2 rounded-xl transition-all duration-300 hover:bg-white/70 bi bi-person text-2xl"></button>
                         <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden">
-                            <a href="userDashboard.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors">
+                            <a href="userDashboard.php" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors">
                                 <i class="bi bi-person-circle mr-3"></i>
                                 Minha conta
                             </a>
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <div class="text-center pt-6">
-                        <a href="catalogo.html" class="inline-flex items-center space-x-3 text-red-500 hover:text-red-600 font-semibold text-lg transition-all duration-300 hover:scale-105">
+                        <a href="catalogo.php" class="inline-flex items-center space-x-3 text-red-500 hover:text-red-600 font-semibold text-lg transition-all duration-300 hover:scale-105">
                             <i class="bi bi-arrow-left"></i>
                             <span>Continue Comprando</span>
                         </a>
@@ -218,7 +218,7 @@
                     </div>
                     <h2 class="text-3xl font-serif font-bold text-gray-800 mb-4">Seu carrinho está vazio</h2>
                     <p class="text-gray-600 mb-8 text-lg">Que tal dar uma olhada em nossos deliciosos bolos e doces?</p>
-                    <a href="catalogo.html" 
+                    <a href="catalogo.php" 
                        class="inline-block bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
                         <i class="bi bi-shop mr-3"></i>
                         Ver Catálogo

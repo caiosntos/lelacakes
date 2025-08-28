@@ -65,13 +65,6 @@
     color: white;
 }
 
-.cake-preview {
-    background: linear-gradient(135deg, #fef3c7, #fed7aa, #fecaca);
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-}
-
 .cake-layer {
     transition: all 0.5s ease;
 }
