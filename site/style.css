@@ -1,0 +1,86 @@
+.font-serif { font-family: 'Playfair Display', serif; }
+.font-sans { font-family: 'Inter', sans-serif; }
+
+.gradient-text {
+    background: linear-gradient(to right, #e53935);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.carousel-container {
+    transition: transform 0.7s ease-in-out;
+}
+        
+ 
+.product-card:hover img {
+    transform: scale(1.1);
+}
+        
+.product-card img {
+    transition: transform 0.5s ease;
+}
+
+.back-to-top {
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+        
+.back-to-top.visible {
+    opacity: 1;
+}
+
+.bg-clip-text {
+     -webkit-background-clip: text;
+     background-clip: text;
+}
+
+.option-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.option-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.option-card.selected {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
+}
+
+.step-indicator {
+    transition: all 0.3s ease;
+}
+
+.step-indicator.active {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.step-indicator.completed {
+    background: #10b981;
+    color: white;
+}
+
+.cake-preview {
+    background: linear-gradient(135deg, #fef3c7, #fed7aa, #fecaca);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.cake-layer {
+    transition: all 0.5s ease;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
