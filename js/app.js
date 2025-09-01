@@ -179,7 +179,7 @@ function showSuccessMessage() {
   const notification = document.createElement("div");
   notification.className =
     "fixed top-24 right-8 bg-green-500 text-white px-6 py-4 rounded-2xl shadow-xl z-[110] transform translate-x-full transition-transform duration-300";
-  notification.innerHTML = `
+  notification.inne.php = `
         <div class="flex items-center space-x-3">
             <i class="bi bi-check-circle text-xl"></i>
             <span class="font-semibold">Produto adicionado ao carrinho!</span>
@@ -321,7 +321,7 @@ function showNotification(message, type = "success") {
 
   const notification = document.createElement("div");
   notification.className = `fixed top-24 right-8 ${bgColor} text-white px-6 py-4 rounded-2xl shadow-xl z-50 transform translate-x-full transition-transform duration-300`;
-  notification.innerHTML = `
+  notification.inne.php = `
         <div class="flex items-center space-x-3">
             <i class="bi ${icon} text-xl"></i>
             <span class="font-semibold">${message}</span>

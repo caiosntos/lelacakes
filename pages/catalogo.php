@@ -43,7 +43,7 @@
         <div class="flex justify-between items-center h-20">
           <div class="flex items-center">
             <a
-              href="../index.html"
+              href="../index.php"
               class="flex items-center space-x-3 text-3xl font-bold"
             >
               <i class="bi bi-cake2 text-4xl text-red-500"></i>
@@ -55,24 +55,24 @@
           </div>
           <div class="flex items-center space-x-8">
             <a
-              href="../index.html"
+              href="../index.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
               >Início</a
             >
             <a
-              href="catalogo.html"
+              href="catalogo.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
               >Catálogo</a
             >
             <a
-              href="montebolo.html"
+              href="montebolo.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
               >Monte seu Bolo</a
             >
             <div
               class="text-gray-700 hover:text-cake-red p-2 rounded-xl transition-all duration-300 hover:bg-white/70 relative"
             >
-              <a href="checkout.html" class="bi bi-cart text-2xl relative">
+              <a href="checkout.php" class="bi bi-cart text-2xl relative">
                 <span
                   id="cart-count"
                   class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden"
@@ -90,7 +90,7 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden"
               >
                 <a
-                  href="userDashboard.html"
+                  href="userDashboard.php"
                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
                 >
                   <i class="bi bi-person-circle mr-3"></i>
@@ -216,7 +216,7 @@
           <ol class="flex items-center space-x-2 text-sm">
             <li>
               <a
-                href="../index.html"
+                href="../index.php"
                 class="text-gray-500 hover:text-red-500 transition-colors duration-300 uppercase tracking-wide font-medium"
                 >Página Principal</a
               >
@@ -408,7 +408,7 @@
             </p>
             <div class="flex justify-center space-x-6">
               <a
-                href="montebolo.html"
+                href="montebolo.php"
                 class="bg-white text-red-500 px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 >Monte seu Bolo</a
               >
@@ -470,4 +470,4 @@
       <i class="bi bi-arrow-up-circle text-2xl"></i>
     </button>
   </body>
-</html>
+</html> 

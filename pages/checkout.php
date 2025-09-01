@@ -42,7 +42,7 @@
         <div class="flex justify-between items-center h-20">
           <div class="flex items-center">
             <a
-              href="../index.html"
+              href="../index.php"
               class="flex items-center space-x-3 text-3xl font-bold"
             >
               <i class="bi bi-cake2 text-4xl text-red-500"></i>
@@ -51,13 +51,13 @@
           </div>
           <div class="flex items-center space-x-8">
             <a
-              href="../index.html"
+              href="../index.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
             >
               Início
             </a>
             <a
-              href="catalogo.html"
+              href="catalogo.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
             >
               Catálogo
@@ -72,7 +72,7 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden"
               >
                 <a
-                  href="userDashboard.html"
+                  href="userDashboard.php"
                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
                 >
                   <i class="bi bi-person-circle mr-3"></i>
@@ -251,7 +251,7 @@
             </div>
             <div class="text-center pt-6">
               <a
-                href="catalogo.html"
+                href="catalogo.php"
                 class="inline-flex items-center space-x-3 text-red-500 hover:text-red-600 font-semibold text-lg transition-all duration-300 hover:scale-105"
               >
                 <i class="bi bi-arrow-left"></i>
@@ -326,7 +326,7 @@
               Que tal dar uma olhada em nossos deliciosos bolos e doces?
             </p>
             <a
-              href="catalogo.html"
+              href="catalogo.php"
               class="inline-block bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
             >
               <i class="bi bi-shop mr-3"></i>
@@ -366,4 +366,4 @@
       </div>
     </footer>
   </body>
-</html>
+</html> 

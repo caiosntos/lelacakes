@@ -43,7 +43,7 @@
         <div class="flex justify-between items-center h-20">
           <div class="flex items-center">
             <a
-              href="index.html"
+              href="index.php"
               class="flex items-center space-x-3 text-3xl font-bold"
             >
               <i class="bi bi-cake2 text-4xl text-red-500"></i>
@@ -53,22 +53,22 @@
 
           <div class="flex items-center space-x-8">
             <a
-              href="index.html"
+              href="index.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
               >Início</a
             >
             <a
-              href="pages/catalogo.html"
+              href="pages/catalogo.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
               >Catálogo</a
             >
             <a
-              href="pages/montebolo.html"
+              href="pages/montebolo.php"
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
               >Monte seu Bolo</a
             >
             <a
-              href="pages/login.html"
+              href="pages/login.php"
               class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-red-600 hover:to-red-700"
               >Login</a
             >
@@ -294,7 +294,7 @@
             Transformamos seus sonhos doces em realidade!
           </p>
           <a
-            href="pages/montebolo.html"
+            href="pages/montebolo.php"
             class="inline-block bg-white text-red-500 px-12 py-4 rounded-full text-xl font-bold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:bg-gray-50"
           >
             Solicitar Pedido
@@ -348,4 +348,4 @@
       </div>
     </footer>
   </body>
-</html>
+</html> 
