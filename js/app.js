@@ -1,3 +1,4 @@
+//O que controla os slides do site
 let currentSlide = 0;
 const slides = document.querySelectorAll("#carousel > div");
 const indicators = document.querySelectorAll(".indicator");
@@ -52,6 +53,8 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
+
+//Gerencia pagina de catalogo e seuas modais
 function ordenarProdutos(ordem) {
   let container = document.getElementById("catalogo");
   let produtos = Array.from(container.getElementsByClassName("produto"));
@@ -236,6 +239,8 @@ function ordenarProdutos(criteria) {
   produtos.forEach((produto) => container.appendChild(produto));
 }
 
+
+//Gerencia pagina de checkout
 const items = {
   item1: { name: "Bolo de Chocolate", price: 25, qty: 2 },
   item2: { name: "Bolo de Rolo", price: 3, qty: 1 },
@@ -357,6 +362,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
+//Gerencia a pagina monte o seu bolo.
 let selections = {
   sabor: "chocolate",
   recheio: null,
@@ -447,6 +453,8 @@ function enableSection(stepNumber) {
 
 updateStepIndicators();
 
+
+//Gerencia toda a dashboard do usuario com sua sidebar e seções igual a do admin. Nome da função diferente mas logica parecida.
 function showSection(section) {
   document.querySelectorAll(".section-content").forEach((content) => {
     content.classList.add("hidden");
@@ -503,10 +511,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-function buscarCEP(cep) {
-  console.log("Buscando CEP:", cep);
-}
-
 function validarFormularioEndereco(form) {
   const campos = form.querySelectorAll("input[required], select[required]");
   let valido = true;
@@ -523,24 +527,40 @@ function validarFormularioEndereco(form) {
   return valido;
 }
 
-function filtrarPorStatus(status) {
-  let pedidos = document.querySelectorAll(".pedido");
 
-  pedidos.forEach((pedido) => {
-    let statusPedido = pedido.getAttribute("data-status");
-
-    if (status === "todos" || statusPedido === status) {
-      pedido.style.display = "block";
-    } else {
-      pedido.style.display = "none";
-    }
+//Gerencia toda sideabr da pagina de admin e suas listas/seções
+function showSextion(section) {
+  document.querySelectorAll('[id^="nav-"]').forEach((nav) => {
+    nav.classList.remove(
+      "bg-red-50",
+      "text-red-600",
+      "border-l-4", 
+      "border-red-500"
+    );
+    nav.classList.add("text-red-700");
+    const span = nav.querySelector("span");
+    if (span) span.classList.remove("font-medium");
   });
 
-  let pedidosVisiveis = document.querySelectorAll(
-    '.pedido[style*="display: block"], .pedido:not([style*="display: none"])'
-  );
+  const activeNav = document.getElementById(`nav-${section}`);
+  if (activeNav) {
+    activeNav.classList.remove("text-red-700");
+    activeNav.classList.add(
+      "bg-red-50",
+      "text-red-600", 
+      "border-l-4",
+      "border-red-500"
+    );
+    const span = activeNav.querySelector("span");
+    if (span) span.classList.add("font-medium");
+  }
 
-  if (pedidosVisiveis.length === 0) {
-    console.log("Nenhum pedido encontrado para este status");
+  document.querySelectorAll(".section-content").forEach((content) => {
+    content.classList.add("hidden");
+  });
+
+  const activeSection = document.getElementById(section);
+  if (activeSection) {
+    activeSection.classList.remove("hidden");
   }
 }
