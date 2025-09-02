@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 
@@ -122,13 +123,14 @@
               <h2 class="text-3xl font-serif font-bold text-gray-800">Login</h2>
               <p class="text-gray-600 mt-2">Bem-vindo de volta!</p>
             </div>
-            <form class="space-y-6">
+            <form action="../backend/controllers/AuthController.php" method="POST" class="space-y-6">
               <div>
                 <label class="block text-gray-700 font-semibold mb-3 text-lg"
                   >Usuário</label
                 >
                 <input
-                  type="text"
+                  type="email"
+                  value="<?= htmlspecialchars($email) ?>"
                   class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-cake-red focus:outline-none transition-all duration-300 text-lg placeholder-gray-400 hover:border-cake-red/50"
                   placeholder="Digite seu usuário"
                 />
@@ -139,6 +141,7 @@
                 >
                 <input
                   type="password"
+                  value="<?= htmlspecialchars($senha) ?>"
                   class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-cake-red focus:outline-none transition-all duration-300 text-lg placeholder-gray-400 hover:border-cake-red/50"
                   placeholder="Digite sua senha"
                 />
