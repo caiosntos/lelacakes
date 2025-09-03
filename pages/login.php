@@ -78,25 +78,6 @@
                 id="userMenuButton"
                 class="text-gray-700 hover:text-red-500 p-2 rounded-xl transition-all duration-300 hover:bg-white/70 bi bi-person text-2xl"
               ></button>
-              <div
-                id="userDropdown"
-                class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden"
-              >
-                <a
-                  href="userDashboard.php"
-                  class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
-                >
-                  <i class="bi bi-person-circle mr-3"></i>
-                  Minha conta
-                </a>
-                <button
-                  onclick="logout()"
-                  class="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
-                >
-                  <i class="bi bi-box-arrow-right mr-3"></i>
-                  Sair
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -125,25 +106,25 @@
             </div>
             <form action="../backend/controllers/AuthController.php" method="POST" class="space-y-6">
               <div>
-                <label class="block text-gray-700 font-semibold mb-3 text-lg"
-                  >Usuário</label
-                >
+                <label class="block text-gray-700 font-semibold mb-3 text-lg">Usuário</label>
                 <input
                   type="email"
-                  value="<?= htmlspecialchars($email) ?>"
+                  name="email"
+                  value="<?= htmlspecialchars($email ?? '') ?>"
                   class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-cake-red focus:outline-none transition-all duration-300 text-lg placeholder-gray-400 hover:border-cake-red/50"
                   placeholder="Digite seu usuário"
+                  required
                 />
               </div>
               <div>
-                <label class="block text-gray-700 font-semibold mb-3 text-lg"
-                  >Senha</label
-                >
+                <label class="block text-gray-700 font-semibold mb-3 text-lg">Senha</label>
                 <input
                   type="password"
-                  value="<?= htmlspecialchars($senha) ?>"
+                  name="senha"
+                  value="<?= htmlspecialchars($senha ?? '') ?>"
                   class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-cake-red focus:outline-none transition-all duration-300 text-lg placeholder-gray-400 hover:border-cake-red/50"
                   placeholder="Digite sua senha"
+                  required
                 />
               </div>
               <button
@@ -152,7 +133,7 @@
               >
                 <i class="bi bi-box-arrow-in-right mr-2"></i>Entrar
               </button>
-            </form>
+            </form> 
             <div class="mt-8 pt-6 border-t border-gray-200">
               <p class="text-center text-gray-600 mb-4">Esqueceu sua senha?</p>
               <a
@@ -282,15 +263,6 @@
                 type="text"
                 class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-pink focus:outline-none transition-all duration-300 placeholder-gray-400"
                 placeholder="Digite seu endereço completo"
-              />
-            </div>
-            <div>
-              <label class="block text-gray-700 font-semibold mb-3"
-                >Data de Nascimento</label
-              >
-              <input
-                type="date"
-                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-pink focus:outline-none transition-all duration-300"
               />
             </div>
           </form>

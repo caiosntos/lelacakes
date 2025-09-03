@@ -99,6 +99,7 @@
                   Minha conta
                 </a>
                 <button
+                  onclick="window.location.href='../backend/controllers/logout.php'"
                   class="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
                 >
                   <i class="bi bi-box-arrow-right mr-3"></i>
