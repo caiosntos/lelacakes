@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 
 
@@ -24,10 +25,8 @@
         theme: {
           extend: {
             colors: {
-              "cake-pink": "#FF6B9D",
+              "cake-red": "#e53935",
               "cake-cream": "#FFF5E6",
-              "cake-brown": "#8B4513",
-              "cake-gold": "#FFD700",
             },
             fontFamily: {
               serif: ["Playfair Display", "serif"],
@@ -81,7 +80,7 @@
                 >
               </a>
             </div>
-            <div class="relative">
+             <div class="relative">
               <button
                 id="userMenuButton"
                 class="text-gray-700 hover:text-red-500 p-2 rounded-xl transition-all duration-300 hover:bg-white/70 bi bi-person text-2xl"
@@ -91,14 +90,24 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden"
               >
                 <a
-                  href="userDashboard.php"
+                 href="<?php
+                    if(isset($_SESSION['role'])){
+                      if($_SESSION['role'] === 'admin'){
+                        echo 'admin.php';
+                      }else{
+                        echo 'userDashboard.php';
+                      }
+                    } else {
+                        echo 'login.php'; // Caso não esteja logado
+                      }
+                      ?>"
                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
                 >
                   <i class="bi bi-person-circle mr-3"></i>
                   Minha conta
                 </a>
                 <button
-                  onclick="logout()"
+                  onclick="window.location.href='../backend/controllers/logout.php'"
                   class="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
                 >
                   <i class="bi bi-box-arrow-right mr-3"></i>

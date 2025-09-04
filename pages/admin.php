@@ -23,10 +23,8 @@
         theme: {
           extend: {
             colors: {
-              "cake-pink": "#FF6B9D",
+              "cake-red": "#e53935",
               "cake-cream": "#FFF5E6",
-              "cake-brown": "#8B4513",
-              "cake-gold": "#FFD700",
             },
             fontFamily: {
               serif: ["Playfair Display", "serif"],
@@ -92,7 +90,17 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden"
               >
                 <a
-                  href="userDashboard.php"
+                  href="<?php
+                    if(isset($_SESSION['role'])){
+                      if($_SESSION['role'] === 'admin'){
+                        echo 'admin.php';
+                      }else{
+                        echo 'userDashboard.php';
+                      }
+                    } else {
+                        echo 'login.php'; // Caso não esteja logado
+                      }
+                      ?>"
                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
                 >
                   <i class="bi bi-person-circle mr-3"></i>
@@ -153,6 +161,7 @@
           <span>Usuários</span>
         </button>
         <button
+        onclick="window.location.href='../backend/controllers/logout.php'"
           class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
         >
           <i class="bi bi-box-arrow-right w-5 h-5 mr-3"></i>

@@ -348,6 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateTotals();
 });
 
+//Gerencia o botão de usario com dropdown
 const userMenuButton = document.getElementById("userMenuButton");
 const userDropdown = document.getElementById("userDropdown");
 
@@ -564,3 +565,23 @@ function showSextion(section) {
     activeSection.classList.remove("hidden");
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('telefone');
+    
+    // Pega o valor que veio do banco
+    const numeroOriginal = input.value;
+    
+    // Remove tudo que não é número
+    const somenteNumeros = numeroOriginal.replace(/\D/g, '');
+    
+    // Aplica a máscara baseado no tamanho
+    if (somenteNumeros.length === 11) {
+        // Celular: (XX) XXXXX-XXXX
+        input.value = somenteNumeros.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (somenteNumeros.length === 10) {
+        // Fixo: (XX) XXXX-XXXX
+        input.value = somenteNumeros.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    }
+    // Se não tem 10 ou 11 dígitos, deixa como está
+});

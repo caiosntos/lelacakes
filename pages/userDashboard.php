@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 
 
@@ -25,10 +25,8 @@
         theme: {
           extend: {
             colors: {
-              "cake-pink": "#FF6B9D",
+              "cake-red": "#e53935",
               "cake-cream": "#FFF5E6",
-              "cake-brown": "#8B4513",
-              "cake-gold": "#FFD700",
             },
             fontFamily: {
               serif: ["Playfair Display", "serif"],
@@ -94,7 +92,17 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden"
               >
                 <a
-                  href="userDashboard.php"
+                 href="<?php
+                    if(isset($_SESSION['role'])){
+                      if($_SESSION['role'] === 'admin'){
+                        echo 'admin.php';
+                      }else{
+                        echo 'userDashboard.php';
+                      }
+                    } else {
+                        echo 'login.php'; // Caso não esteja logado
+                      }
+                      ?>"
                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
                 >
                   <i class="bi bi-person-circle mr-3"></i>
@@ -151,6 +159,7 @@
                 <span>Meu endereço</span>
               </button>
               <button
+                onclick="window.location.href='../backend/controllers/logout.php'"
                 class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
               >
                 <i class="bi bi-box-arrow-right w-5 h-5 mr-3"></i>
@@ -163,7 +172,6 @@
               <h2 class="text-xl font-semibold text-gray-800 mb-8">
                 Meu cadastro - Conta Pessoal
               </h2>
-
               <form class="space-y-6">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2"
@@ -171,58 +179,31 @@
                   >
                   <input
                     type="text"
-                    value="CAIO GIOVANI SANTOS MADUREIRA"
+                    value="<?php echo htmlspecialchars($_SESSION['usuario']['nome'] ?? ''); ?>"
                     class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                     readonly
                   />
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >Data de nascimento</label
-                    >
-                    <input
-                      type="text"
-                      value="XXXXXXXX"
-                      class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                      readonly
-                    />
-                  </div>
-
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2"
                       >CPF</label
                     >
                     <input
                       type="text"
-                      value="XXXXXXXX"
+                      value="<?php echo htmlspecialchars($_SESSION['usuario']['cpf'] ?? ''); ?>"
                       class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                       readonly
                     />
-                  </div>
-
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >RG</label
-                    >
-                    <input
-                      type="text"
-                      value="0.000.000-0"
-                      class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                      readonly
-                    />
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  </div> 
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2"
                       >E-mail</label
                     >
                     <input
                       type="email"
-                      value="XXXXXXXX"
+                      value="<?php echo htmlspecialchars($_SESSION['usuario']['email'] ?? ''); ?>"
                       class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                       readonly
                     />
@@ -233,19 +214,19 @@
                       Alterar e-mail
                     </button>
                   </div>
-
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2"
                       >Telefone</label
                     >
                     <input
                       type="tel"
-                      value="XXXXXXXX"
+                      id="phone"
+                      name="phone"
+                      value="<?php echo htmlspecialchars($_SESSION['usuario']['telefone'] ?? ''); ?>"
                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                     />
                   </div>
                 </div>
-
                 <div class="flex justify-end space-x-4 pt-6">
                   <button
                     type="button"
@@ -259,8 +240,8 @@
                   >
                     SALVAR
                   </button>
-                </div>
-              </form>
+                  </div>
+                </form>
             </div>
 
             <div id="section-pedidos" class="section-content hidden">

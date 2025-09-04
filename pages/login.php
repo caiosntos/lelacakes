@@ -1,4 +1,8 @@
 <?php
+  if (isset($_SESSION['erro_login'])) {
+     echo '<p style="color: red;">' . $_SESSION['erro_login'] . '</p>';
+     unset($_SESSION['erro_login']); 
+}
 
 ?>
 
@@ -73,12 +77,6 @@
               class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
               >Monte seu Bolo</a
             >
-            <div class="relative">
-              <button
-                id="userMenuButton"
-                class="text-gray-700 hover:text-red-500 p-2 rounded-xl transition-all duration-300 hover:bg-white/70 bi bi-person text-2xl"
-              ></button>
-            </div>
           </div>
         </div>
       </div>
