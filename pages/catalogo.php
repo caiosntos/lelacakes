@@ -292,7 +292,7 @@ session_start();
                 class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
               <div
-                class="absolute top-4 right-4 bg-gradient-to-r from-cake-pink to-orange-400 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
+                class="absolute top-4 right-4 bg-gradient-to-r from-cake-red to-red-400 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
               >
                 Destaque
               </div>
