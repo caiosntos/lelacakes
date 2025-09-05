@@ -220,8 +220,7 @@ session_start();
                     >
                     <input
                       type="tel"
-                      id="phone"
-                      name="phone"
+                      id="telefone"
                       value="<?php echo htmlspecialchars($_SESSION['usuario']['telefone'] ?? ''); ?>"
                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                     />

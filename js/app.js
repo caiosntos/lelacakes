@@ -70,27 +70,6 @@ function ordenarProdutos(ordem) {
 let currentProduct = null;
 let cart = [];
 
-function openModal1() {
-  const modal = document.getElementById("registroModal");
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
-  document.body.style.overflow = "hidden";
-}
-
-function closeModal1() {
-  const modal = document.getElementById("registroModal");
-  modal.classList.add("hidden");
-  modal.classList.remove("flex");
-  document.body.style.overflow = "auto";
-}
-
-window.onclick = function (event) {
-  const modal = document.getElementById("registroModal");
-  if (event.target === modal) {
-    closeModal1();
-  }
-};
-
 function openModal(button) {
   const productCard = button.closest(".produto");
   const image = productCard.querySelector("img").src;
