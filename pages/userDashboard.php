@@ -6,7 +6,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" />  
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minha Conta - Lela Cakes</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -100,7 +100,7 @@ session_start();
                         echo 'userDashboard.php';
                       }
                     } else {
-                        echo 'login.php'; // Caso não esteja logado
+                        echo 'login.php';
                       }
                       ?>"
                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
