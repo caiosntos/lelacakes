@@ -1,4 +1,5 @@
 <?php
+include('includes/navbar.php');
 ?>
 
 
@@ -24,10 +25,8 @@
         theme: {
           extend: {
             colors: {
-              "cake-pink": "#FF6B9D",
+              "cake-red": "#e53935",
               "cake-cream": "#FFF5E6",
-              "cake-brown": "#8B4513",
-              "cake-gold": "#FFD700",
             },
             fontFamily: {
               serif: ["Playfair Display", "serif"],
@@ -40,46 +39,6 @@
   </head>
 
   <body class="bg-gradient-to-br from-orange-50 via-white to-pink-50 font-sans">
-    <nav
-      class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-lg"
-    >
-      <div class="max-w-7xl mx-auto px-8">
-        <div class="flex justify-between items-center h-20">
-          <div class="flex items-center">
-            <a
-              href="index.php"
-              class="flex items-center space-x-3 text-3xl font-bold"
-            >
-              <i class="bi bi-cake2 text-4xl text-red-500"></i>
-              <span class="font-serif gradient-text">Lela Cakes</span>
-            </a>
-          </div>
-
-          <div class="flex items-center space-x-8">
-            <a
-              href="index.php"
-              class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
-              >Início</a
-            >
-            <a
-              href="pages/catalogo.php"
-              class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
-              >Catálogo</a
-            >
-            <a
-              href="pages/montebolo.php"
-              class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
-              >Monte seu Bolo</a
-            >
-            <a
-              href="pages/login.php"
-              class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-red-600 hover:to-red-700"
-              >Login</a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
     <div class="relative h-screen overflow-hidden mt-20">
       <div id="carousel" class="flex h-full carousel-container">
         <div class="min-w-full h-full relative">

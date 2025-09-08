@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -20,6 +19,26 @@ session_start();
     />
     <script src="../js/app.js" defer></script>
     <link rel="stylesheet" href="../site/style.css" />
+    <script>
+      // JavaScript para o dropdown do usuário
+      document.addEventListener('DOMContentLoaded', function() {
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userDropdown = document.getElementById('userDropdown');
+        
+        if (userMenuButton && userDropdown) {
+          userMenuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+          });
+          
+          document.addEventListener('click', function(e) {
+            if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
+              userDropdown.classList.add('hidden');
+            }
+          });
+        }
+      });
+    </script>
     <script>
       tailwind.config = {
         theme: {
@@ -39,86 +58,8 @@ session_start();
   </head>
 
   <body class="bg-gradient-to-br from-orange-50 via-white to-pink-50 font-sans">
-    <nav
-      class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-lg"
-    >
-      <div class="max-w-7xl mx-auto px-8">
-        <div class="flex justify-between items-center h-20">
-          <div class="flex items-center">
-            <a
-              href="../index.php"
-              class="flex items-center space-x-3 text-3xl font-bold"
-            >
-              <i class="bi bi-cake2 text-4xl text-red-500"></i>
-              <span class="font-serif gradient-text">Lela Cakes</span>
-            </a>
-          </div>
-          <div class="flex items-center space-x-8">
-            <a
-              href="../index.php"
-              class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
-              >Início</a
-            >
-            <a
-              href="catalogo.php"
-              class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
-              >Catálogo</a
-            >
-            <a
-              href="montebolo.php"
-              class="text-gray-700 hover:text-red-500 px-4 py-2 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white hover:shadow-md"
-              >Monte seu Bolo</a
-            >
-            <div
-              class="text-gray-700 hover:text-red-500 p-2 rounded-xl transition-all duration-300 hover:bg-white/70 relative"
-            >
-              <a href="checkout.php" class="bi bi-cart text-2xl relative">
-                <span
-                  id="cart-count"
-                  class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden"
-                  >0</span
-                >
-              </a>
-            </div>
-             <div class="relative">
-              <button
-                id="userMenuButton"
-                class="text-gray-700 hover:text-red-500 p-2 rounded-xl transition-all duration-300 hover:bg-white/70 bi bi-person text-2xl"
-              ></button>
-              <div
-                id="userDropdown"
-                class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden"
-              >
-                <a
-                 href="<?php
-                    if(isset($_SESSION['role'])){
-                      if($_SESSION['role'] === 'admin'){
-                        echo 'admin.php';
-                      }else{
-                        echo 'userDashboard.php';
-                      }
-                    } else {
-                        echo 'login.php'; // Caso não esteja logado
-                      }
-                      ?>"
-                  class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
-                >
-                  <i class="bi bi-person-circle mr-3"></i>
-                  Minha conta
-                </a>
-                <button
-                  onclick="window.location.href='../backend/controllers/logout.php'"
-                  class="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors"
-                >
-                  <i class="bi bi-box-arrow-right mr-3"></i>
-                  Sair
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <?php include('../includes/navbar.php'); ?>
+    
     <div class="pt-24 pb-16">
       <div class="max-w-7xl mx-auto px-8">
         <div class="text-center mb-12">
@@ -469,4 +410,4 @@ session_start();
       </div>
     </div>
   </body>
-</html> 
+</html>

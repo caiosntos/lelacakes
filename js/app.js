@@ -328,19 +328,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //Gerencia o botão de usario com dropdown
-const userMenuButton = document.getElementById("userMenuButton");
-const userDropdown = document.getElementById("userDropdown");
+  const userButton = document.getElementById('userMenuButton');
+  const userDropdown = document.getElementById('userDropdown');
 
-userMenuButton.addEventListener("click", function (e) {
-  e.preventDefault();
-  userDropdown.classList.toggle("hidden");
-});
-
-document.addEventListener("click", function (e) {
-  if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
-    userDropdown.classList.add("hidden");
+  if(userButton) {
+    userButton.addEventListener('click', () => {
+      userDropdown.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if(!userDropdown.contains(e.target) && !userButton.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
   }
-});
 
 //Gerencia a pagina monte o seu bolo.
 let selections = {
