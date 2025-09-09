@@ -206,7 +206,6 @@
                     <span class="text-gray-700 font-medium group-hover:text-gray-800">
                       Conecte-se com Google
                     </span>
-                    >
                 </div>
               </form>
             </div>
