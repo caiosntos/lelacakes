@@ -1,7 +1,5 @@
 <?php
 session_start();
-include('../includes/navbar.php');
-
 ?>
 
 
@@ -40,6 +38,7 @@ include('../includes/navbar.php');
     </script>
   </head>
   <body class="bg-gradient-to-br from-white via-white to-white-50 font-sans">
+    <?php include '../includes/navbar.php'; ?>
     <main class="pt-28 pb-16">
       <div class="max-w-6xl mx-auto px-8">
         <div class="mb-12 text-center">

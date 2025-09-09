@@ -1,7 +1,5 @@
 <?php
 session_start();
-include('../includes/navbar.php');
-
 ?>
 
 
@@ -41,6 +39,7 @@ include('../includes/navbar.php');
   </head>
 
   <body class="bg-gradient-to-br from-white via-white to-white font-sans">
+    <?php include '../includes/navbar.php'; ?>
     <div
       id="cart-modal"
       class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center"

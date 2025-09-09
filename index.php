@@ -1,5 +1,4 @@
 <?php
-include('includes/navbar.php');
 ?>
 
 
@@ -39,6 +38,7 @@ include('includes/navbar.php');
   </head>
 
   <body class="bg-gradient-to-br from-orange-50 via-white to-pink-50 font-sans">
+    <?php include 'includes/navbar.php'; ?>
     <div class="relative h-screen overflow-hidden mt-20">
       <div id="carousel" class="flex h-full carousel-container">
         <div class="min-w-full h-full relative">
