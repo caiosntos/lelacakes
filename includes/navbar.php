@@ -10,7 +10,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["usuario"]["role"])) {
     }
 }
 ?>
-
+    
     <nav
       class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-lg"
     >

@@ -1,5 +1,17 @@
 <?php
 session_start();
+include '../includes/navbar.php';
+require_once '../backend/config/database.php';
+
+// Buscar usuários do banco de dados
+try {
+    $stmt = $pdo->prepare("SELECT id, nome, email, telefone, role FROM usuarios");
+    $stmt->execute();
+    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $usuarios = [];
+    $erro_usuarios = "Erro ao carregar usuários: " . $e->getMessage();
+}
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +19,7 @@ session_start();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minha Conta - Lela Cakes</title>
+    <title>Painel Administrativo - Lela Cakes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -37,56 +49,592 @@ session_start();
     </script>
   </head>
   <body class="bg-gradient-to-br from-white via-white to-white font-sans">
-    <?php include '../includes/navbar.php'; ?>
-    <div class="flex pt-20">
-      <div class="fixed left-0 top-20 h-full w-80 bg-white shadow-xl border-r border-gray-200 z-40">
-        <div class="p-6">
-          <div class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 font-serif">Admin</h2>
-            <p class="text-gray-600 mt-1">Gerencie sua loja</p>
+    <div class="pt-20 min-h-screen bg-gray-50">
+      <div class="max-w-7xl mx-auto p-8">
+        <div class="flex gap-8">
+          <div class="w-80 bg-white rounded-2xl shadow-lg p-6 h-fit">
+            <div class="flex items-center mb-6 pb-4 border-b border-gray-100">
+              <i
+                class="bi bi-shield-check text-xl text-red-500 mr-3"
+              ></i>
+              <h1 class="text-xl font-semibold text-gray-800">Painel Admin</h1>
+            </div>
+
+            <nav class="space-y-2">
+              <button
+                onclick="showSextion('addProduto')"
+                id="nav-addProduto"
+                class="w-full flex items-center p-3 rounded-xl bg-red-50 text-red-600 border-l-4 border-red-500 hover:bg-red-100 transition-colors"
+              >
+                <i class="bi bi-box-seam-fill w-5 h-5 mr-3"></i>
+                <span class="font-medium">Produtos</span>
+              </button>
+              <button
+                onclick="showSextion('pedidosAdmin')"
+                id="nav-pedidosAdmin"
+                class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
+              >
+                <i class="bi bi-clipboard2-check w-5 h-5 mr-3"></i>
+                <span>Pedidos</span>
+              </button>
+              <button
+                onclick="showSextion('usuariosAdmin')"
+                id="nav-usuariosAdmin"
+                class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
+              >
+                <i class="bi bi-people-fill w-5 h-5 mr-3"></i>
+                <span>Usuários</span>
+              </button>
+              <button
+                onclick="showSextion('configSite')"
+                id="nav-configSite"
+                class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
+              >
+                <i class="bi bi-gear-fill w-5 h-5 mr-3"></i>
+                <span>Configurações</span>
+              </button>
+              <button
+                onclick="window.location.href='../backend/controllers/logout.php'"
+                class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
+              >
+                <i class="bi bi-box-arrow-right w-5 h-5 mr-3"></i>
+                <span>Sair</span>
+              </button>
+            </nav>
           </div>
 
-      <nav class="space-y-2">
-        <button
-          onclick="showSextion('addProduto')"
-          id="nav-addProduto"
-          class="w-full flex items-center p-3 rounded-xl bg-red-50 text-red-600 border-l-4 border-red-500 hover:bg-red-100 transition-colors"
-        >
-          <i class="bi bi-box-seam-fill w-5 h-5 mr-3"></i>
-          <span class="font-medium">Adicione ou Edite Produtos</span>
-        </button>
-        <button
-          onclick="showSextion('pedidosAdmin')"
-          id="nav-pedidosAdmin"
-          class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
-        >
-          <i class="bi bi-clipboard2-check w-5 h-5 mr-3"></i>
-          <span>Pedidos</span>
-        </button>
-        <button
-          onclick="showSextion('configSite')"
-          id="nav-configSite"
-          class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
-        >
-          <i class="bi bi-gear-fill w-5 h-5 mr-3"></i>
-          <span>Configurações do site</span>
-        </button>
-        <button
-          onclick="showSextion('usuariosAdmin')"
-          id="nav-usuariosAdmin"
-          class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
-        >
-          <i class="bi bi-people-fill w-5 h-5 mr-3"></i>
-          <span>Usuários</span>
-        </button>
-        <button
-        onclick="window.location.href='../backend/controllers/logout.php'"
-          class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
-        >
-          <i class="bi bi-box-arrow-right w-5 h-5 mr-3"></i>
-          <span>Sair</span>
-        </button>
-      </nav>
+          <div class="flex-1 bg-white rounded-2xl shadow-lg p-8">
+            <!-- Seção Adicionar/Editar Produtos -->
+            <div id="addProduto" class="section-content">
+              <div class="flex justify-between items-center mb-8">
+                <h2 class="text-xl font-semibold text-gray-800">
+                  Gerenciar Produtos
+                </h2>
+                <button
+                  onclick="toggleProductForm()"
+                  class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                >
+                  <i class="bi bi-plus-circle mr-2"></i>
+                  Adicionar Produto
+                </button>
+              </div>
+
+              <!-- Formulário de Produto -->
+              <div id="product-form" class="hidden mb-8 p-6 bg-gray-50 rounded-xl">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Novo Produto</h3>
+                <form class="space-y-4">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Nome do Produto</label>
+                      <input
+                        type="text"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        placeholder="Ex: Bolo de Chocolate"
+                      />
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Preço (R$)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        placeholder="89.90"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
+                    <textarea
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all h-24"
+                      placeholder="Descreva o produto..."
+                    ></textarea>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Categoria</label>
+                      <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="bolos">Bolos</option>
+                        <option value="doces">Doces</option>
+                        <option value="tortas">Tortas</option>
+                        <option value="salgados">Salgados</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                      <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all">
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Imagem do Produto</label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    />
+                  </div>
+                  <div class="flex justify-end space-x-4 pt-4">
+                    <button
+                      type="button"
+                      onclick="toggleProductForm()"
+                      class="px-6 py-3 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      type="submit"
+                      class="px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium shadow-lg"
+                    >
+                      Salvar Produto
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Lista de Produtos -->
+              <div class="space-y-4">
+                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                      <img src="../img/courtney-cook-CIKN2MfSp1Q-unsplash.jpg" alt="Bolo" class="w-16 h-16 rounded-lg mr-4 object-cover" />
+                      <div>
+                        <h3 class="font-semibold text-gray-800">Bolo de Chocolate</h3>
+                        <p class="text-sm text-gray-600">Massa de chocolate com recheio de brigadeiro</p>
+                        <p class="text-sm text-gray-500">Categoria: Bolos</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-gray-800">R$ 89,90</p>
+                      <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">Ativo</span>
+                    </div>
+                  </div>
+                  <div class="flex justify-end space-x-2">
+                    <button class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm">
+                      Editar
+                    </button>
+                    <button class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm">
+                      Excluir
+                    </button>
+                  </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                      <img src="../img/julia-peretiatko-oXfOK1ymtPU-unsplash.jpg" alt="Doces" class="w-16 h-16 rounded-lg mr-4 object-cover" />
+                      <div>
+                        <h3 class="font-semibold text-gray-800">Docinhos Variados</h3>
+                        <p class="text-sm text-gray-600">Seleção de doces artesanais</p>
+                        <p class="text-sm text-gray-500">Categoria: Doces</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-gray-800">R$ 45,00</p>
+                      <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">Ativo</span>
+                    </div>
+                  </div>
+                  <div class="flex justify-end space-x-2">
+                    <button class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm">
+                      Editar
+                    </button>
+                    <button class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm">
+                      Excluir
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seção Pedidos Admin -->
+            <div id="pedidosAdmin" class="section-content hidden">
+              <h2 class="text-xl font-semibold text-gray-800 mb-8">
+                Gerenciar Pedidos
+              </h2>
+
+              <div class="mb-6 flex flex-wrap gap-4">
+                <select
+                  id="ordenarPedidos"
+                  onchange="filtrarPedidosPorStatus(this.value)"
+                  class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+                >
+                  <option value="todos">Todos os pedidos</option>
+                  <option value="pendente">Pendentes</option>
+                  <option value="em-preparo">Em preparo</option>
+                  <option value="pronto">Prontos</option>
+                  <option value="entregue">Entregues</option>
+                  <option value="cancelado">Cancelados</option>
+                </select>
+                <input
+                  type="text"
+                  placeholder="Buscar por cliente..."
+                  class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+                />
+              </div>
+
+              <div class="space-y-4">
+                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 class="font-semibold text-gray-800">Pedido #12345</h3>
+                      <p class="text-sm text-gray-600">Cliente: Maria Silva</p>
+                      <p class="text-sm text-gray-600">Realizado em 15/12/2024 às 14:30</p>
+                    </div>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium">Em preparo</span>
+                  </div>
+
+                  <div class="flex items-center mb-4">
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800">Bolo de Chocolate com Morango</h4>
+                      <p class="text-sm text-gray-600">Quantidade: 1</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-gray-800">R$ 89,90</p>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div class="text-sm text-gray-600">
+                      <p><strong>Total:</strong> R$ 89,90</p>
+                      <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro</p>
+                    </div>
+                    <div class="flex space-x-2">
+                      <button class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm">
+                        Ver detalhes
+                      </button>
+                      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm">
+                        Marcar como pronto
+                      </button>
+                      <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm">
+                        Cancelar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 class="font-semibold text-gray-800">Pedido #12344</h3>
+                      <p class="text-sm text-gray-600">Cliente: João Santos</p>
+                      <p class="text-sm text-gray-600">Realizado em 10/12/2024 às 10:15</p>
+                    </div>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">Entregue</span>
+                  </div>
+
+                  <div class="flex items-center mb-4">
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800">Docinhos Variados</h4>
+                      <p class="text-sm text-gray-600">Quantidade: 2</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-gray-800">R$ 90,00</p>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div class="text-sm text-gray-600">
+                      <p><strong>Total:</strong> R$ 90,00</p>
+                      <p><strong>Entregue em:</strong> 12/12/2024 às 16:00</p>
+                    </div>
+                    <div class="flex space-x-2">
+                      <button class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm">
+                        Ver detalhes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seção Usuários Admin -->
+            <div id="usuariosAdmin" class="section-content hidden">
+              <div class="flex justify-between items-center mb-8">
+                <h2 class="text-xl font-semibold text-gray-800">
+                  Gerenciar Usuários
+                </h2>
+                <div class="flex space-x-2">
+                  <input
+                    type="text"
+                    id="buscarUsuario"
+                    placeholder="Buscar usuário..."
+                    class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+                    onkeyup="filtrarUsuarios()"
+                  />
+                  <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </div>
+
+              <?php if (isset($erro_usuarios)): ?>
+                <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  <i class="bi bi-exclamation-triangle mr-2"></i>
+                  <?= htmlspecialchars($erro_usuarios) ?>
+                </div>
+              <?php endif; ?>
+
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                  <thead>
+                    <tr class="bg-gray-50">
+                      <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">ID</th>
+                      <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Nome</th>
+                      <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Email</th>
+                      <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Telefone</th>
+                      <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Tipo</th>
+                      <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabelaUsuarios">
+                    <?php if (empty($usuarios)): ?>
+                      <tr>
+                        <td colspan="7" class="border border-gray-200 px-4 py-8 text-center text-gray-500">
+                          <i class="bi bi-person-x text-2xl mb-2 block"></i>
+                          Nenhum usuário encontrado
+                        </td>
+                      </tr>
+                    <?php else: ?>
+                      <?php foreach ($usuarios as $usuario): ?>
+                        <tr class="hover:bg-gray-50" data-nome="<?= strtolower(htmlspecialchars($usuario['nome'])) ?>" data-email="<?= strtolower(htmlspecialchars($usuario['email'])) ?>">
+                          <td class="border border-gray-200 px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($usuario['id']) ?></td>
+                          <td class="border border-gray-200 px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($usuario['nome']) ?></td>
+                          <td class="border border-gray-200 px-4 py-3 text-sm text-gray-600"><?= htmlspecialchars($usuario['email']) ?></td>
+                          <td class="border border-gray-200 px-4 py-3 text-sm text-gray-600">
+                            <?= $usuario['telefone'] ? htmlspecialchars($usuario['telefone']) : '-' ?>
+                          </td>
+                          <td class="border border-gray-200 px-4 py-3 text-sm">
+                            <?php if ($usuario['role'] === 'admin'): ?>
+                              <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">Admin</span>
+                            <?php else: ?>
+                              <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">Cliente</span>
+                            <?php endif; ?>
+                          </td>
+                          <td class="border border-gray-200 px-4 py-3 text-sm">
+                            <div class="flex space-x-2">
+                              <button 
+                                onclick="editarUsuario(<?= $usuario['id'] ?>)"
+                                class="px-3 py-1 text-blue-600 border border-blue-600 rounded hover:bg-blue-50 transition-colors text-xs"
+                              >
+                                Editar
+                              </button>
+                              <?php if ($usuario['role'] !== 'admin'): ?>
+                                <button 
+                                  onclick="bloquearUsuario(<?= $usuario['id'] ?>)"
+                                  class="px-3 py-1 text-red-600 border border-red-600 rounded hover:bg-red-50 transition-colors text-xs"
+                                >
+                                  Bloquear
+                                </button>
+                              <?php else: ?>
+                                <button 
+                                  class="px-3 py-1 text-gray-400 border border-gray-400 rounded cursor-not-allowed text-xs" 
+                                  disabled
+                                >
+                                  Bloquear
+                                </button>
+                              <?php endif; ?>
+                            </div>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Estatísticas dos usuários -->
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div class="flex items-center">
+                    <i class="bi bi-people text-blue-600 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-blue-600 font-medium">Total de Usuários</p>
+                      <p class="text-2xl font-bold text-blue-800"><?= count($usuarios) ?></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div class="flex items-center">
+                    <i class="bi bi-shield-check text-green-600 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-green-600 font-medium">Administradores</p>
+                      <p class="text-2xl font-bold text-green-800">
+                        <?= count(array_filter($usuarios, function($u) { return $u['role'] === 'admin'; })) ?>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <div class="flex items-center">
+                    <i class="bi bi-person text-purple-600 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-purple-600 font-medium">Clientes</p>
+                      <p class="text-2xl font-bold text-purple-800">
+                        <?= count(array_filter($usuarios, function($u) { return $u['role'] === 'user'; })) ?>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seção Configurações do Site -->
+            <div id="configSite" class="section-content hidden">
+              <h2 class="text-xl font-semibold text-gray-800 mb-8">
+                Configurações do Site
+              </h2>
+
+              <div class="space-y-8">
+                <!-- Informações da Empresa -->
+                <div class="border border-gray-200 rounded-xl p-6">
+                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Informações da Empresa</h3>
+                  <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa</label>
+                        <input
+                          type="text"
+                          value="Lela Cakes"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">CNPJ</label>
+                        <input
+                          type="text"
+                          placeholder="00.000.000/0000-00"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
+                      <textarea
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all h-24"
+                        placeholder="Descreva sua empresa..."
+                      >A melhor confeitaria de Joinville e Região!</textarea>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Contato -->
+                <div class="border border-gray-200 rounded-xl p-6">
+                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Informações de Contato</h3>
+                  <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                        <input
+                          type="tel"
+                          placeholder="(47) 99999-9999"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp</label>
+                        <input
+                          type="tel"
+                          placeholder="(47) 99999-9999"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                      <input
+                        type="email"
+                        placeholder="contato@lelacakes.com"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Endereço</label>
+                      <textarea
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all h-20"
+                        placeholder="Rua, número, bairro, cidade..."
+                      ></textarea>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Redes Sociais -->
+                <div class="border border-gray-200 rounded-xl p-6">
+                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Redes Sociais</h3>
+                  <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Instagram</label>
+                        <input
+                          type="url"
+                          placeholder="https://instagram.com/lelacakes"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Facebook</label>
+                        <input
+                          type="url"
+                          placeholder="https://facebook.com/lelacakes"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Configurações de Entrega -->
+                <div class="border border-gray-200 rounded-xl p-6">
+                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Configurações de Entrega</h3>
+                  <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Taxa de Entrega (R$)</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          placeholder="5.00"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Pedido Mínimo (R$)</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          placeholder="30.00"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Horário de Funcionamento</label>
+                      <div class="grid grid-cols-2 gap-4">
+                        <input
+                          type="time"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                        <input
+                          type="time"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="flex justify-end pt-6">
+                  <button class="px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium shadow-lg">
+                    Salvar Configurações
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   </body>
 </html> 

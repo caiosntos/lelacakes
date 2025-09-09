@@ -53,7 +53,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-
 //Gerencia pagina de catalogo e seuas modais
 function ordenarProdutos(ordem) {
   let container = document.getElementById("catalogo");
@@ -218,7 +217,6 @@ function ordenarProdutos(criteria) {
   produtos.forEach((produto) => container.appendChild(produto));
 }
 
-
 //Gerencia pagina de checkout
 const items = {
   item1: { name: "Bolo de Chocolate", price: 25, qty: 2 },
@@ -328,19 +326,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //Gerencia o botão de usario com dropdown
-  const userButton = document.getElementById('userMenuButton');
-  const userDropdown = document.getElementById('userDropdown');
+const userButton = document.getElementById("userMenuButton");
+const userDropdown = document.getElementById("userDropdown");
 
-  if(userButton) {
-    userButton.addEventListener('click', () => {
-      userDropdown.classList.toggle('hidden');
-    });
-    document.addEventListener('click', (e) => {
-      if(!userDropdown.contains(e.target) && !userButton.contains(e.target)) {
-        userDropdown.classList.add('hidden');
-      }
-    });
-  }
+if (userButton) {
+  userButton.addEventListener("click", () => {
+    userDropdown.classList.toggle("hidden");
+  });
+  document.addEventListener("click", (e) => {
+    if (!userDropdown.contains(e.target) && !userButton.contains(e.target)) {
+      userDropdown.classList.add("hidden");
+    }
+  });
+}
 
 //Gerencia a pagina monte o seu bolo.
 let selections = {
@@ -433,7 +431,6 @@ function enableSection(stepNumber) {
 
 updateStepIndicators();
 
-
 //Gerencia toda a dashboard do usuario com sua sidebar e seções igual a do admin. Nome da função diferente mas logica parecida.
 function showSection(section) {
   document.querySelectorAll(".section-content").forEach((content) => {
@@ -507,14 +504,85 @@ function validarFormularioEndereco(form) {
   return valido;
 }
 
+// Função para alternar formulário de produto
+function toggleProductForm() {
+  const form = document.getElementById("product-form");
+  form.classList.toggle("hidden");
+}
 
-//Gerencia toda sideabr da pagina de admin e suas listas/seções
+// Função para filtrar pedidos por status
+function filtrarPedidosPorStatus(status) {
+  console.log("Filtrando pedidos por:", status);
+  // Implementar lógica de filtro aqui
+}
+
+// Função para filtrar usuários
+function filtrarUsuarios() {
+  const termo = document.getElementById("buscarUsuario").value.toLowerCase();
+  const linhas = document.querySelectorAll("#tabelaUsuarios tr");
+
+  linhas.forEach((linha) => {
+    const nome = linha.getAttribute("data-nome") || "";
+    const email = linha.getAttribute("data-email") || "";
+
+    if (nome.includes(termo) || email.includes(termo)) {
+      linha.style.display = "";
+    } else {
+      linha.style.display = "none";
+    }
+  });
+}
+
+// Função para editar usuário
+function editarUsuario(id) {
+  if (confirm("Deseja editar este usuário?")) {
+    // Implementar modal de edição ou redirecionar para página de edição
+    console.log("Editando usuário ID:", id);
+    // window.location.href = 'editar-usuario.php?id=' + id;
+  }
+}
+
+// Função para bloquear usuário
+function bloquearUsuario(id) {
+  if (confirm("Tem certeza que deseja bloquear este usuário?")) {
+    // Implementar requisição AJAX para bloquear usuário
+    console.log("Bloqueando usuário ID:", id);
+
+    // Exemplo de requisição AJAX
+    fetch("bloquear-usuario.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Usuário bloqueado com sucesso!");
+          location.reload(); // Recarregar a página para atualizar os dados
+        } else {
+          alert("Erro ao bloquear usuário: " + data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        alert("Erro ao bloquear usuário");
+      });
+  }
+}
+
+// Função para mostrar seções (corrigindo o nome da função)
 function showSextion(section) {
+  document.querySelectorAll(".section-content").forEach((content) => {
+    content.classList.add("hidden");
+  });
+
   document.querySelectorAll('[id^="nav-"]').forEach((nav) => {
     nav.classList.remove(
       "bg-red-50",
       "text-red-600",
-      "border-l-4", 
+      "border-l-4",
       "border-red-500"
     );
     nav.classList.add("text-red-700");
@@ -522,26 +590,16 @@ function showSextion(section) {
     if (span) span.classList.remove("font-medium");
   });
 
+  document.getElementById(section).classList.remove("hidden");
+
   const activeNav = document.getElementById(`nav-${section}`);
-  if (activeNav) {
-    activeNav.classList.remove("text-red-700");
-    activeNav.classList.add(
-      "bg-red-50",
-      "text-red-600", 
-      "border-l-4",
-      "border-red-500"
-    );
-    const span = activeNav.querySelector("span");
-    if (span) span.classList.add("font-medium");
-  }
-
-  document.querySelectorAll(".section-content").forEach((content) => {
-    content.classList.add("hidden");
-  });
-
-  const activeSection = document.getElementById(section);
-  if (activeSection) {
-    activeSection.classList.remove("hidden");
-  }
+  activeNav.classList.add(
+    "bg-red-50",
+    "text-red-600",
+    "border-l-4",
+    "border-red-500"
+  );
+  activeNav.classList.remove("text-red-700");
+  const span = activeNav.querySelector("span");
+  if (span) span.classList.add("font-medium");
 }
-
