@@ -199,7 +199,6 @@ include '../includes/navbar.php';
                   </div>
 
                   <div class="flex items-center mb-4">
-                    <img src="" alt="Bolo" class="w-15 h-15 rounded-lg mr-4" />
                     <div class="flex-1">
                       <h4 class="font-medium text-gray-800">
                         Bolo de Chocolate com Morango
@@ -252,7 +251,6 @@ include '../includes/navbar.php';
                   </div>
 
                   <div class="flex items-center mb-4">
-                    <img src="" alt="Bolo" class="w-15 h-15 rounded-lg mr-4" />
                     <div class="flex-1">
                       <h4 class="font-medium text-gray-800">Torta de Limão</h4>
                       <p class="text-sm text-gray-600">
