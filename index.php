@@ -61,7 +61,7 @@
                   A melhor confeitaria de Joinville e Região!
                 </p>
                 <a
-                  href="#"
+                  href="pages/catalogo.php"
                   class="inline-block bg-gradient-to-r from-red-500 to-red-600 text-white px-10 py-4 rounded-full text-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300 hover:from-red-600 hover:to-red-700"
                 >
                   Peça já!
@@ -84,12 +84,6 @@
               <h1 class="text-6xl font-serif font-bold mb-6 text-shadow-lg">
                 Docinhos e muito mais!
               </h1>
-              <a
-                href="#"
-                class="inline-block bg-gradient-to-r from-red-500 to-red-600 text-white px-10 py-4 rounded-full text-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300 hover:from-red-600 hover:to-red-700 mt-4"
-              >
-                Confira
-              </a>
             </div>
           </div>
         </div>
