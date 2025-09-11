@@ -44,9 +44,10 @@ include '../includes/navbar.php';
         <div class="flex gap-8">
           <div class="w-80 bg-white rounded-2xl shadow-lg p-6 h-fit">
             <div class="flex items-center mb-6 pb-4 border-b border-gray-100">
-              <i
+              <a
+                href="../index.php"
                 class="bi bi-arrow-left text-xl text-gray-600 mr-3 cursor-pointer hover:text-red-500 transition-colors"
-              ></i>
+              ></a>
               <h1 class="text-xl font-semibold text-gray-800">Minha conta</h1>
             </div>
 
@@ -139,7 +140,7 @@ include '../includes/navbar.php';
                       type="tel"
                       id="telefone"
                       value="<?php echo htmlspecialchars($_SESSION['usuario']['telefone'] ?? ''); ?>"
-                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                      class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                     />
                   </div>
                 </div>
