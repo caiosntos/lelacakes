@@ -1,3 +1,12 @@
+function abrirModalSenha() {
+  document.getElementById("modalSenha").classList.remove("hidden");
+}
+
+function fecharModalSenha() {
+  document.getElementById("modalSenha").classList.add("hidden");
+}
+
+
 //O que controla os slides do site
 let currentSlide = 0;
 const slides = document.querySelectorAll("#carousel > div");
@@ -511,9 +520,16 @@ function toggleProductForm() {
 }
 
 // Função para filtrar pedidos por status
-function filtrarPedidosPorStatus(status) {
-  console.log("Filtrando pedidos por:", status);
-  // Implementar lógica de filtro aqui
+function filtrarPorStatus(status) {
+  const pedidos = document.querySelectorAll(".pedido-card");
+
+  pedidos.forEach((pedido) => {
+    if (status === "todos" || pedido.dataset.status === status) {
+      pedido.style.display = "block"; // mostra
+    } else {
+      pedido.style.display = "none"; // esconde
+    }
+  });
 }
 
 // Função para filtrar usuários

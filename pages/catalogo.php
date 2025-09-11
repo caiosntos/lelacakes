@@ -187,7 +187,6 @@ session_start();
               class="bg-transparent border-2 border-gray-200 rounded-xl px-4 py-2 text-gray-700 font-medium focus:border-cake-pink focus:outline-none transition-all duration-300 cursor-pointer hover:border-cake-pink/50"
               onchange="ordenarProdutos(this.value)"
             >
-              <option value="novidades">Novidades</option>
               <option value="asc">Mais baratos</option>
               <option value="desc">Mais caros</option>
             </select>

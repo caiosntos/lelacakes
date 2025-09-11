@@ -3,7 +3,6 @@ session_start();
 include '../includes/navbar.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -21,6 +20,7 @@ include '../includes/navbar.php';
     />
     <link rel="stylesheet" href="../site/style.css" />
     <script src="../js/app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -141,9 +141,103 @@ include '../includes/navbar.php';
                       id="telefone"
                       value="<?php echo htmlspecialchars($_SESSION['usuario']['telefone'] ?? ''); ?>"
                       class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                      readonly
                     />
                   </div>
+                  
+                  <?php if(isset($_GET['sucesso'])): ?>
+                  <script>
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Sucesso!',
+                      text: '<?= $_GET['sucesso'] ?>',
+                      confirmButtonText: 'OK',
+                      confirmButtonColor: '#4caf50'
+                  });
+                  </script>
+                  <?php endif; ?>
+            
+                  <?php if(isset($_GET['erro'])): ?>
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: '<?= $_GET['erro'] ?>',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#e53935'
+                    });
+                  </script>
+                  <?php endif; ?>
+
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Senha</label
+                    >
+                    <input
+                      type="password"
+                      value="********"
+                      class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                      readonly
+                    />
+                    <button
+                      type="button"
+                      onclick="abrirModalSenha()"
+                      class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1"
+                    >
+                      Alterar senha
+                    </button>
+            
+                    <div id="modalSenha" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        <h2 class="text-lg font-semibold mb-4">Alterar Senha</h2>
+
+                        <form id="formSenha" method="POST" action="../backend/controllers/changePassword.php" class="space-y-3">
+                          <input
+                            type="password"
+                            name="senha_atual"
+                            id="senha_atual"
+                            placeholder="Senha atual"
+                            required
+                            class="w-full mb-2 p-3 border rounded-lg"
+                          />
+                          <input
+                            type="password"
+                            name="nova_senha"
+                            id="nova_senha"
+                            placeholder="Nova senha"
+                            required
+                            class="w-full mb-2 p-3 border rounded-lg"
+                          />
+                          <input
+                            type="password"
+                            name="confirmar_senha"
+                            id="confirmar_senha"
+                            placeholder="Confirmar nova senha"
+                            required
+                            class="w-full mb-2 p-3 border rounded-lg"
+                          />
+
+                          <div class="flex justify-end gap-2">
+                            <button
+                              type="button"
+                              onclick="fecharModalSenha()"
+                              class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors"
+                            >
+                              Cancelar
+                            </button>
+                            <button
+                              type="submit"
+                              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                            >
+                              Salvar nova senha
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                
                 <div class="flex justify-end space-x-4 pt-6">
                   <button
                     type="button"
@@ -151,14 +245,8 @@ include '../includes/navbar.php';
                   >
                     Excluir minha conta
                   </button>
-                  <button
-                    type="submit"
-                    class="px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium shadow-lg"
-                  >
-                    SALVAR
-                  </button>
-                  </div>
-                </form>
+                </div>
+              </form>
             </div>
 
             <div id="section-pedidos" class="section-content hidden">
@@ -180,7 +268,8 @@ include '../includes/navbar.php';
               </div>
               <div class="space-y-4">
                 <div
-                  class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow"
+                  class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow pedido-card"
+                  data-status="entregues"
                 >
                   <div class="flex justify-between items-start mb-4">
                     <div>
@@ -232,9 +321,10 @@ include '../includes/navbar.php';
                   </div>
                 </div>
                 <div
-                  class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow"
+                  class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow pedido-card"
+                  data-status="em-preparo"
                 >
-                  <div class="flex justify-between items-start mb-4" data-status="em-andamento">
+                  <div class="flex justify-between items-start mb-4">
                     <div>
                       <h3 class="font-semibold text-gray-800">Pedido #12344</h3>
                       <p class="text-sm text-gray-600">
@@ -282,8 +372,8 @@ include '../includes/navbar.php';
                   </div>
                 </div>
               </div>
-
             </div>
+            
             <div id="section-endereco" class="section-content hidden">
               <div class="flex justify-between items-center mb-8">
                 <h2 class="text-xl font-semibold text-gray-800">
