@@ -125,12 +125,6 @@ include '../includes/navbar.php';
                       class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                       readonly
                     />
-                    <button
-                      type="button"
-                      class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1"
-                    >
-                      Alterar e-mail
-                    </button>
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2"
@@ -144,30 +138,6 @@ include '../includes/navbar.php';
                       readonly
                     />
                   </div>
-                  
-                  <?php if(isset($_GET['sucesso'])): ?>
-                  <script>
-                  Swal.fire({
-                      icon: 'success',
-                      title: 'Sucesso!',
-                      text: '<?= $_GET['sucesso'] ?>',
-                      confirmButtonText: 'OK',
-                      confirmButtonColor: '#4caf50'
-                  });
-                  </script>
-                  <?php endif; ?>
-            
-                  <?php if(isset($_GET['erro'])): ?>
-                    <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro!',
-                        text: '<?= $_GET['erro'] ?>',
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#e53935'
-                    });
-                  </script>
-                  <?php endif; ?>
 
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2"
@@ -190,47 +160,38 @@ include '../includes/navbar.php';
                     <div id="modalSenha" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
                       <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                         <h2 class="text-lg font-semibold mb-4">Alterar Senha</h2>
+                        <?php if(isset($_GET['sucesso'])): ?>
+                            <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sucesso!',
+                                text: <?= json_encode($_GET['sucesso']) ?>,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#4caf50'
+                            });
+                            </script>
+                            <?php endif; ?>
 
-                        <form id="formSenha" method="POST" action="../backend/controllers/changePassword.php" class="space-y-3">
-                          <input
-                            type="password"
-                            name="senha_atual"
-                            id="senha_atual"
-                            placeholder="Senha atual"
-                            required
-                            class="w-full mb-2 p-3 border rounded-lg"
-                          />
-                          <input
-                            type="password"
-                            name="nova_senha"
-                            id="nova_senha"
-                            placeholder="Nova senha"
-                            required
-                            class="w-full mb-2 p-3 border rounded-lg"
-                          />
-                          <input
-                            type="password"
-                            name="confirmar_senha"
-                            id="confirmar_senha"
-                            placeholder="Confirmar nova senha"
-                            required
-                            class="w-full mb-2 p-3 border rounded-lg"
-                          />
+                            <?php if(isset($_GET['erro'])): ?>
+                            <script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro!',
+                                text: <?= json_encode($_GET['erro']) ?>,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#e53935'
+                            });
+                            </script>
+                            <?php endif; ?>
 
-                          <div class="flex justify-end gap-2">
-                            <button
-                              type="button"
-                              onclick="fecharModalSenha()"
-                              class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors"
-                            >
-                              Cancelar
-                            </button>
-                            <button
-                              type="submit"
-                              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                            >
-                              Salvar nova senha
-                            </button>
+                        <form action="../backend/controllers/changePassword.php" method="POST" class="space-y-3">
+                          <input type="password" name="senha_atual" placeholder="Senha atual" required class="w-full mb-3 p-3 border rounded-lg" />
+                          <input type="password" name="nova_senha" placeholder="Nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
+                          <input type="password" name="confirmar_senha" placeholder="Confirmar nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
+
+                          <div class="flex justify-end gap-2 mt-4">
+                            <button type="button" onclick="fecharModalSenha()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors">Cancelar</button>
+                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">Salvar</button>
                           </div>
                         </form>
                       </div>
