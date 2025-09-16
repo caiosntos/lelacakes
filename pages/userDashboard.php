@@ -149,55 +149,16 @@ include '../includes/navbar.php';
                       class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                       readonly
                     />
-                    <button
+                    <a
                       type="button"
-                      onclick="abrirModalSenha()"
+                      href="redifineSenha.php"
                       class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1"
                     >
                       Alterar senha
-                    </button>
-            
-                    <div id="modalSenha" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-                      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                        <h2 class="text-lg font-semibold mb-4">Alterar Senha</h2>
-                        <?php if(isset($_GET['sucesso'])): ?>
-                            <script>
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sucesso!',
-                                text: <?= json_encode($_GET['sucesso']) ?>,
-                                confirmButtonText: 'OK',
-                                confirmButtonColor: '#4caf50'
-                            });
-                            </script>
-                            <?php endif; ?>
-
-                            <?php if(isset($_GET['erro'])): ?>
-                            <script>
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Erro!',
-                                text: <?= json_encode($_GET['erro']) ?>,
-                                confirmButtonText: 'OK',
-                                confirmButtonColor: '#e53935'
-                            });
-                            </script>
-                            <?php endif; ?>
-
-                        <form action="../backend/controllers/changePassword.php" method="POST" class="space-y-3">
-                          <input type="password" name="senha_atual" placeholder="Senha atual" required class="w-full mb-3 p-3 border rounded-lg" />
-                          <input type="password" name="nova_senha" placeholder="Nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
-                          <input type="password" name="confirmar_senha" placeholder="Confirmar nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
-
-                          <div class="flex justify-end gap-2 mt-4">
-                            <button type="button" onclick="fecharModalSenha()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors">Cancelar</button>
-                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">Salvar</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 </div>
+
                 
                 <div class="flex justify-end space-x-4 pt-6">
                   <button
@@ -209,7 +170,6 @@ include '../includes/navbar.php';
                 </div>
               </form>
             </div>
-
             <div id="section-pedidos" class="section-content hidden">
               <h2 class="text-xl font-semibold text-gray-800 mb-8">
                 Meus Pedidos
