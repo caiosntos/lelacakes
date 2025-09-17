@@ -77,7 +77,7 @@ include '../includes/navbar.php';
 
         <div class="flex justify-end gap-2 mt-4">
           <a type="button" href="userDashboard.php" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors">Cancelar</a>
-          <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Salvar</button>
+          <button type="button" id="btnDeleteSenha" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Salvar</button>
         </div>
       </form>
     </div>

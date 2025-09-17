@@ -1,6 +1,9 @@
-document
-  .getElementById("btnDeleteAccount")
-  .addEventListener("click", function () {
+//SweetAlert para deletar conta
+const deleteBtn = document.getElementById("btnDeleteAccount");
+const deleteForm = document.getElementById("deleteAccountForm");
+
+if (deleteBtn && deleteForm) {
+  deleteBtn.addEventListener("click", function () {
     Swal.fire({
       title: "Tem certeza?",
       text: "Essa ação não pode ser desfeita!",
@@ -12,31 +15,34 @@ document
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        document.getElementById("deleteAccountForm").submit();
+        deleteForm.submit();
       }
     });
   });
+}
 
-  
-//SweetAlert para trocar senha da  conta 
-document
-  .getElementById("btnTrocaSenha")
-  .addEventListener("click", function () {
+//SweetAlert para Alterar Senha
+const deleteSenha = document.getElementById("btnDeleteSenha");
+const deleteSenhaForm = document.getElementById("formAlterarSenha");
+
+if (deleteSenha && deleteSenhaForm) {
+  deleteSenha.addEventListener("click", function () {
     Swal.fire({
       title: "Tem certeza?",
-      text: "Essa ação não pode ser desfeita!",
-      icon: "warning",
+      text: "Deseja realmente alterar sua senha?",
+      icon: "success",
       showCancelButton: true,
-      confirmButtonColor: "rgba(9, 238, 66, 1)",
+      confirmButtonColor: "#d33",
       cancelButtonColor: "#6b7280",
-      confirmButtonText: "Sim, Trocar!",
+      confirmButtonText: "Sim, alterar!",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        document.getElementById("formAlterarSenha").submit();
+        deleteSenhaForm.submit();
       }
     });
   });
+}
 
 //O que controla os slides do site
 let currentSlide = 0;
@@ -365,16 +371,22 @@ document.addEventListener("DOMContentLoaded", function () {
   updateTotals();
 });
 
-//Gerencia o botão de usario com dropdown
-const userButton = document.getElementById("userMenuButton");
+// -------------------------------
+// ⬇️ Dropdown do usuário
+// -------------------------------
+const userMenuButton = document.getElementById("userMenuButton");
 const userDropdown = document.getElementById("userDropdown");
 
-if (userButton) {
-  userButton.addEventListener("click", () => {
+if (userMenuButton && userDropdown) {
+  userMenuButton.addEventListener("click", () => {
     userDropdown.classList.toggle("hidden");
   });
-  document.addEventListener("click", (e) => {
-    if (!userDropdown.contains(e.target) && !userButton.contains(e.target)) {
+
+  document.addEventListener("click", (event) => {
+    if (
+      !userMenuButton.contains(event.target) &&
+      !userDropdown.contains(event.target)
+    ) {
       userDropdown.classList.add("hidden");
     }
   });
@@ -650,7 +662,3 @@ function showSextion(section) {
   const span = activeNav.querySelector("span");
   if (span) span.classList.add("font-medium");
 }
-
-//SweetAlert para deletar conta
-
-
