@@ -37,7 +37,7 @@ include '../includes/navbar.php';
         <h2 class="text-xl font-semibold text-gray-800 mb-8">
                 Alterar Senha
         </h2>
-      <form id="formAlterarSenha" action="../backend/controllers/changePassword.php" method="POST" class="space-y-3">
+      <form id="formAlterarSenha" action="../backend/controllers/ChangePassword.php" method="POST" class="space-y-3">
         <div>
           <input 
             type="password" 

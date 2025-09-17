@@ -157,18 +157,19 @@ include '../includes/navbar.php';
                       Alterar senha
                     </a>
                   </div>
-                </div>
-
-                
-                <div class="flex justify-end space-x-4 pt-6">
+                </div>      
+              </form>
+             <div class="flex justify-end space-x-4 pt-6">
+                <form id="deleteAccountForm" action="../backend/controllers/DeleteAccount.php" method="POST">
                   <button
-                    type="button"
-                    class="px-6 py-3 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                      type="button"
+                      id="btnDeleteAccount"
+                    class="px-6 py-3 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors font-medium"
                   >
                     Excluir minha conta
                   </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
             <div id="section-pedidos" class="section-content hidden">
               <h2 class="text-xl font-semibold text-gray-800 mb-8">

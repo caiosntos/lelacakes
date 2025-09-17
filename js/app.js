@@ -1,12 +1,3 @@
-function abrirModalSenha() {
-  document.getElementById("modalSenha").classList.remove("hidden");
-}
-
-function fecharModalSenha() {
-  document.getElementById("modalSenha").classList.add("hidden");
-}
-
-
 //O que controla os slides do site
 let currentSlide = 0;
 const slides = document.querySelectorAll("#carousel > div");
@@ -619,3 +610,23 @@ function showSextion(section) {
   const span = activeNav.querySelector("span");
   if (span) span.classList.add("font-medium");
 }
+
+//SweetAlert para deletar conta
+document
+  .getElementById("btnDeleteAccount")
+  .addEventListener("click", function () {
+    Swal.fire({
+      title: "Tem certeza?",
+      text: "Essa ação não pode ser desfeita!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Sim, excluir!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById("deleteAccountForm").submit();
+      }
+    });
+  });
