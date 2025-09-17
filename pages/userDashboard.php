@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../includes/navbar.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -139,6 +140,7 @@ include '../includes/navbar.php';
                     />
                   </div>
 
+                  
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2"
                       >Senha</label
@@ -149,28 +151,44 @@ include '../includes/navbar.php';
                       class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                       readonly
                     />
-                    <a
+                    <button
                       type="button"
-                      href="redefinirSenha.php"
+                      onclick="abrirModalSenha()"
                       class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1"
                     >
                       Alterar senha
-                    </a>
+                    </button>
+            
+                    <div id="modalSenha" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        <h2 class="text-lg font-semibold mb-4">Alterar Senha</h2>
+
+                        <form action="../backend/controllers/changePassword.php" method="POST" class="space-y-3">
+                          <input type="password" name="senha_atual" placeholder="Senha atual" required class="w-full mb-3 p-3 border rounded-lg" />
+                          <input type="password" name="nova_senha" placeholder="Nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
+                          <input type="password" name="confirmar_senha" placeholder="Confirmar nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
+
+                          <div class="flex justify-end gap-2 mt-4">
+                            <button type="button" onclick="fecharModalSenha()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors">Cancelar</button>
+                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">Salvar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-                </div>      
-              </form>
-             <div class="flex justify-end space-x-4 pt-6">
-                <form id="deleteAccountForm" action="../backend/controllers/DeleteAccount.php" method="POST">
+                </div>
+                
+                <div class="flex justify-end space-x-4 pt-6">
                   <button
-                      type="button"
-                      id="btnDeleteAccount"
-                    class="px-6 py-3 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors font-medium"
+                    type="button"
+                    class="px-6 py-3 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors font-medium"
                   >
                     Excluir minha conta
                   </button>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
+
             <div id="section-pedidos" class="section-content hidden">
               <h2 class="text-xl font-semibold text-gray-800 mb-8">
                 Meus Pedidos
@@ -230,14 +248,10 @@ include '../includes/navbar.php';
                     </div>
                     <div class="flex space-x-2">
                       <button
+                        onclick="abrirModalDetalhes('12345')"
                         class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm"
                       >
                         Ver detalhes
-                      </button>
-                      <button
-                        class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"
-                      >
-                        Pedir novamente
                       </button>
                     </div>
                   </div>
@@ -280,6 +294,7 @@ include '../includes/navbar.php';
                     </div>
                     <div class="flex space-x-2">
                       <button
+                        onclick="abrirModalDetalhes('12344')"
                         class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm"
                       >
                         Ver detalhes
@@ -342,5 +357,173 @@ include '../includes/navbar.php';
         </div>
       </div>
     </div>
+
+    <!-- Modal de Detalhes do Pedido -->
+    <div id="modalDetalhes" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4">
+        <div class="p-6">
+          <!-- Header do Modal -->
+          <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-800">Detalhes do Pedido</h2>
+            <button onclick="fecharModalDetalhes()" class="text-gray-500 hover:text-gray-700 text-2xl">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+
+          <!-- Conteúdo do Modal -->
+          <div id="conteudoDetalhes">
+            <!-- Será preenchido dinamicamente pelo JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Função para abrir modal de detalhes
+      function abrirModalDetalhes(pedidoId) {
+        const modal = document.getElementById('modalDetalhes');
+        const conteudo = document.getElementById('conteudoDetalhes');
+        
+        // Dados dos pedidos (simulados)
+        const dadosPedidos = {
+          '12345': {
+            numero: '12345',
+            data: '15/12/2024',
+            status: 'Entregue',
+            statusClass: 'bg-green-100 text-green-700',
+            total: 'R$ 89,90',
+            endereco: {
+              nome: 'Casa - Endereço Principal',
+              rua: 'Rua das Flores, 123 - Apto 45',
+              cidade: 'Centro - Joinville/SC',
+              cep: '89200-000'
+            },
+            produtos: [
+              {
+                nome: 'Bolo de Chocolate com Morango',
+                descricao: 'Massa de chocolate, recheio de brigadeiro, cobertura de chantilly',
+                quantidade: 1,
+                preco: 'R$ 89,90',
+                imagem: '../img/cf8691ab-7ea7-4f4a-88b6-429984a24641.jpg'
+              }
+            ],
+            observacoes: 'Entregar após as 14h. Tocar a campainha.',
+            pagamento: 'Dinheiro',
+            entrega: '15/12/2024 às 15:30'
+          },
+          '12344': {
+            numero: '12344',
+            data: '10/12/2024',
+            status: 'Em preparo',
+            statusClass: 'bg-yellow-100 text-yellow-700',
+            total: 'R$ 129,80',
+            endereco: {
+              nome: 'Casa - Endereço Principal',
+              rua: 'Rua das Flores, 123 - Apto 45',
+              cidade: 'Centro - Joinville/SC',
+              cep: '89200-000'
+            },
+            produtos: [
+              {
+                nome: 'Torta de Limão',
+                descricao: 'Massa amanteigada, creme de limão, merengue',
+                quantidade: 2,
+                preco: 'R$ 129,80',
+                imagem: '../img/julia-peretiatko-oXfOK1ymtPU-unsplash.jpg'
+              }
+            ],
+            observacoes: 'Sem açúcar refinado. Usar açúcar demerara.',
+            pagamento: 'PIX',
+            entrega: '12/12/2024 às 16:00'
+          }
+        };
+
+        const pedido = dadosPedidos[pedidoId];
+        if (!pedido) return;
+
+        conteudo.innerHTML = `
+          <!-- Informações Gerais -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-3">Informações do Pedido</h3>
+              <div class="space-y-2 text-sm">
+                <p><strong>Número:</strong> #${pedido.numero}</p>
+                <p><strong>Data:</strong> ${pedido.data}</p>
+                <p><strong>Status:</strong> <span class="px-2 py-1 rounded-full text-xs font-medium ${pedido.statusClass}">${pedido.status}</span></p>
+                <p><strong>Total:</strong> ${pedido.total}</p>
+                <p><strong>Pagamento:</strong> ${pedido.pagamento}</p>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-3">Endereço de Entrega</h3>
+              <div class="space-y-1 text-sm">
+                <p><strong>${pedido.endereco.nome}</strong></p>
+                <p>${pedido.endereco.rua}</p>
+                <p>${pedido.endereco.cidade}</p>
+                <p>CEP: ${pedido.endereco.cep}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produtos -->
+          <div class="mb-6">
+            <h3 class="font-semibold text-gray-800 mb-4">Produtos</h3>
+            <div class="space-y-4">
+              ${pedido.produtos.map(produto => `
+                <div class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                  <img src="${produto.imagem}" alt="${produto.nome}" class="w-16 h-16 object-cover rounded-lg">
+                  <div class="flex-1">
+                    <h4 class="font-medium text-gray-800">${produto.nome}</h4>
+                    <p class="text-sm text-gray-600">${produto.descricao}</p>
+                    <p class="text-sm text-gray-600">Quantidade: ${produto.quantidade}</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-semibold text-gray-800">${produto.preco}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Botões de Ação -->
+          <div class="flex justify-end space-x-4 mt-6 pt-6 border-t border-gray-200">
+            <button onclick="fecharModalDetalhes()" class="px-6 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              Fechar
+            </button>
+            ${pedido.status === 'Entregue' ? `
+              <button class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                Pedir Novamente
+              </button>
+            ` : `
+              <button class="px-6 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">
+                Cancelar Pedido
+              </button>
+            `}
+          </div>
+        `;
+
+        modal.classList.remove('hidden');
+      }
+
+      // Função para fechar modal de detalhes
+      function fecharModalDetalhes() {
+        document.getElementById('modalDetalhes').classList.add('hidden');
+      }
+
+      // Fechar modal ao clicar fora dele
+      document.getElementById('modalDetalhes').addEventListener('click', function(e) {
+        if (e.target === this) {
+          fecharModalDetalhes();
+        }
+      });
+
+      // Fechar modal com ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          fecharModalDetalhes();
+        }
+      });
+    </script>
   </body>
 </html>
