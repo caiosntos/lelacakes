@@ -151,7 +151,7 @@ include '../includes/navbar.php';
                     />
                     <a
                       type="button"
-                      href="redifineSenha.php"
+                      href="redefinirSenha.php"
                       class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1"
                     >
                       Alterar senha
