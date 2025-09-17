@@ -1,3 +1,43 @@
+document
+  .getElementById("btnDeleteAccount")
+  .addEventListener("click", function () {
+    Swal.fire({
+      title: "Tem certeza?",
+      text: "Essa ação não pode ser desfeita!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Sim, excluir!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById("deleteAccountForm").submit();
+      }
+    });
+  });
+
+  
+//SweetAlert para trocar senha da  conta 
+document
+  .getElementById("btnTrocaSenha")
+  .addEventListener("click", function () {
+    Swal.fire({
+      title: "Tem certeza?",
+      text: "Essa ação não pode ser desfeita!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "rgba(9, 238, 66, 1)",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Sim, Trocar!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById("formAlterarSenha").submit();
+      }
+    });
+  });
+
 //O que controla os slides do site
 let currentSlide = 0;
 const slides = document.querySelectorAll("#carousel > div");
@@ -612,21 +652,5 @@ function showSextion(section) {
 }
 
 //SweetAlert para deletar conta
-document
-  .getElementById("btnDeleteAccount")
-  .addEventListener("click", function () {
-    Swal.fire({
-      title: "Tem certeza?",
-      text: "Essa ação não pode ser desfeita!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#6b7280",
-      confirmButtonText: "Sim, excluir!",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        document.getElementById("deleteAccountForm").submit();
-      }
-    });
-  });
+
+
