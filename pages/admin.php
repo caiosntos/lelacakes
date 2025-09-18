@@ -275,6 +275,49 @@ try {
               </div>
 
               <div class="space-y-4">
+                <!-- Pedido Customizado (Bolo Personalizado) -->
+                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow bg-blue-50">
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 class="font-semibold text-gray-800">Pedido #12346 - Bolo Customizado</h3>
+                      <p class="text-sm text-gray-600">Cliente: Ana Costa</p>
+                      <p class="text-sm text-gray-600">Realizado em 18/12/2024 às 16:45</p>
+                    </div>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">Aguardando Orçamento</span>
+                  </div>
+
+                  <div class="flex items-center mb-4">
+                    <div class="flex-1">
+                      <h4 class="font-medium text-gray-800">Bolo Personalizado</h4>
+                      <p class="text-sm text-gray-600">
+                        <strong>Sabor:</strong> Chocolate | 
+                        <strong>Recheio:</strong> Brigadeiro | 
+                        <strong>Topo:</strong> Flores | 
+                        <strong>Decoração:</strong> Chantilly
+                      </p>
+                      <p class="text-sm text-gray-600">Quantidade: 1</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-gray-800">A definir</p>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div class="text-sm text-gray-600">
+                      <p><strong>Status:</strong> Aguardando aprovação de orçamento</p>
+                      <p><strong>Endereço:</strong> Rua das Palmeiras, 456 - Jardins</p>
+                    </div>
+                    <div class="flex space-x-2">
+                      <button 
+                        onclick="abrirModalOrcamento('12346')"
+                        class="px-4 py-2 text-purple-600 border border-purple-600 rounded-lg hover:bg-purple-50 transition-colors text-sm"
+                      >
+                        Gerenciar Orçamento
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
                   <div class="flex justify-between items-start mb-4">
                     <div>
@@ -635,5 +678,244 @@ try {
         </div>
       </div>
     </div>
+
+    <!-- Modal de Gerenciar Orçamento -->
+    <div id="modalOrcamento" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl m-4">
+        <div class="p-6">
+          <!-- Header do Modal -->
+          <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-800">Gerenciar Orçamento</h2>
+            <button onclick="fecharModalOrcamento()" class="text-gray-500 hover:text-gray-700 text-2xl">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+
+          <!-- Conteúdo do Modal -->
+          <div id="conteudoOrcamento">
+            <!-- Informações do Pedido -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Detalhes do Pedido</h3>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <p><strong>Pedido:</strong> #<span id="numeroPedido">12346</span></p>
+                <p><strong>Cliente:</strong> <span id="nomeCliente">Ana Costa</span></p>
+                <p><strong>Data:</strong> <span id="dataPedido">18/12/2024 às 16:45</span></p>
+                <div class="mt-2">
+                  <p><strong>Especificações:</strong></p>
+                  <ul class="text-sm text-gray-600 ml-4">
+                    <li>• Sabor: Chocolate</li>
+                    <li>• Recheio: Brigadeiro</li>
+                    <li>• Topo: Flores</li>
+                    <li>• Decoração: Chantilly</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Formulário de Orçamento -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Definir Orçamento</h3>
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Valor do Orçamento (R$)</label>
+                  <input 
+                    type="number" 
+                    id="valorOrcamento"
+                    step="0.01"
+                    min="0"
+                    placeholder="Ex: 120.00"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+                  />
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Observações (opcional)</label>
+                  <textarea 
+                    id="observacoesOrcamento"
+                    rows="3"
+                    placeholder="Detalhes adicionais sobre o orçamento, tempo de preparo, etc."
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none resize-none"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Status do Orçamento -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Status do Orçamento</h3>
+              <div class="flex items-center space-x-4">
+                <label class="flex items-center">
+                  <input 
+                    type="radio" 
+                    name="statusOrcamento" 
+                    value="pendente" 
+                    checked
+                    class="mr-2 text-red-500 focus:ring-red-500"
+                  />
+                  <span class="text-sm text-gray-700">Aguardando Aprovação</span>
+                </label>
+                <label class="flex items-center">
+                  <input 
+                    type="radio" 
+                    name="statusOrcamento" 
+                    value="aprovado"
+                    class="mr-2 text-red-500 focus:ring-red-500"
+                  />
+                  <span class="text-sm text-gray-700">Aprovado pelo Cliente</span>
+                </label>
+                <label class="flex items-center">
+                  <input 
+                    type="radio" 
+                    name="statusOrcamento" 
+                    value="rejeitado"
+                    class="mr-2 text-red-500 focus:ring-red-500"
+                  />
+                  <span class="text-sm text-gray-700">Rejeitado pelo Cliente</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+              <button 
+                onclick="fecharModalOrcamento()" 
+                class="px-6 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Cancelar
+              </button>
+              <button 
+                onclick="salvarOrcamento()" 
+                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Salvar Orçamento
+              </button>
+              <button 
+                id="btnGerarPedido"
+                onclick="gerarPedido()" 
+                class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors opacity-50 cursor-not-allowed"
+                disabled
+              >
+                Gerar Pedido
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      // Função para abrir modal de orçamento
+      function abrirModalOrcamento(pedidoId) {
+        document.getElementById('modalOrcamento').classList.remove('hidden');
+        document.getElementById('numeroPedido').textContent = pedidoId;
+        
+        // Resetar formulário
+        document.getElementById('valorOrcamento').value = '';
+        document.getElementById('observacoesOrcamento').value = '';
+        document.querySelector('input[name="statusOrcamento"][value="pendente"]').checked = true;
+        
+        // Desabilitar botão gerar pedido inicialmente
+        const btnGerarPedido = document.getElementById('btnGerarPedido');
+        btnGerarPedido.disabled = true;
+        btnGerarPedido.classList.add('opacity-50', 'cursor-not-allowed');
+        btnGerarPedido.classList.remove('hover:bg-green-700');
+      }
+
+      // Função para fechar modal de orçamento
+      function fecharModalOrcamento() {
+        document.getElementById('modalOrcamento').classList.add('hidden');
+      }
+
+      // Função para salvar orçamento
+      function salvarOrcamento() {
+        const valor = document.getElementById('valorOrcamento').value;
+        const observacoes = document.getElementById('observacoesOrcamento').value;
+        const status = document.querySelector('input[name="statusOrcamento"]:checked').value;
+        
+        if (!valor || valor <= 0) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Valor Inválido',
+            text: 'Por favor, informe um valor válido para o orçamento.',
+            confirmButtonColor: '#e53935'
+          });
+          return;
+        }
+
+        // Habilitar/desabilitar botão gerar pedido baseado no status
+        const btnGerarPedido = document.getElementById('btnGerarPedido');
+        if (status === 'aprovado') {
+          btnGerarPedido.disabled = false;
+          btnGerarPedido.classList.remove('opacity-50', 'cursor-not-allowed');
+          btnGerarPedido.classList.add('hover:bg-green-700');
+        } else {
+          btnGerarPedido.disabled = true;
+          btnGerarPedido.classList.add('opacity-50', 'cursor-not-allowed');
+          btnGerarPedido.classList.remove('hover:bg-green-700');
+        }
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Orçamento Salvo!',
+          text: `Orçamento de R$ ${parseFloat(valor).toFixed(2)} foi salvo com status: ${status === 'pendente' ? 'Aguardando Aprovação' : status === 'aprovado' ? 'Aprovado' : 'Rejeitado'}`,
+          confirmButtonColor: '#e53935'
+        });
+      }
+
+      // Função para gerar pedido
+      function gerarPedido() {
+        const status = document.querySelector('input[name="statusOrcamento"]:checked').value;
+        
+        if (status !== 'aprovado') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Orçamento Não Aprovado',
+            text: 'O pedido só pode ser gerado após a aprovação do orçamento pelo cliente.',
+            confirmButtonColor: '#e53935'
+          });
+          return;
+        }
+
+        Swal.fire({
+          title: 'Gerar Pedido?',
+          text: 'Isso irá criar um pedido oficial para produção. Confirmar?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#e53935',
+          cancelButtonColor: '#6b7280',
+          confirmButtonText: 'Sim, gerar pedido',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Simular geração do pedido
+            Swal.fire({
+              icon: 'success',
+              title: 'Pedido Gerado!',
+              text: 'O pedido foi gerado com sucesso e está agora em produção.',
+              confirmButtonColor: '#e53935'
+            }).then(() => {
+              fecharModalOrcamento();
+              // Atualizar a interface (recarregar página ou atualizar dinamicamente)
+              location.reload();
+            });
+          }
+        });
+      }
+
+      // Fechar modal ao clicar fora dele
+      document.getElementById('modalOrcamento').addEventListener('click', function(e) {
+        if (e.target === this) {
+          fecharModalOrcamento();
+        }
+      });
+
+      // Fechar modal com ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          fecharModalOrcamento();
+        }
+      });
+    </script>
   </body>
 </html> 

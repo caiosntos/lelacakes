@@ -1,7 +1,6 @@
 <?php
 session_start();
 include '../includes/navbar.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -87,107 +86,83 @@ include '../includes/navbar.php';
             </nav>
           </div>
           <div class="flex-1 bg-white rounded-2xl shadow-lg p-8">
-            <div id="section-cadastro" class="section-content">
-              <h2 class="text-xl font-semibold text-gray-800 mb-8">
-                Meu cadastro - Conta Pessoal
-              </h2>
-              <form class="space-y-6">
+          <div id="section-cadastro" class="section-content">
+            <h2 class="text-xl font-semibold text-gray-800 mb-8">
+              Meu cadastro - Conta Pessoal
+            </h2>
+            <form class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Nome completo</label>
+                <input
+                  type="text"
+                  value="<?php echo htmlspecialchars($_SESSION['usuario']['nome'] ?? ''); ?>"
+                  class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                  readonly
+                />
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
-                    >Nome completo</label
-                  >
+                  <label class="block text-sm font-medium text-gray-700 mb-2">CPF</label>
                   <input
                     type="text"
-                    value="<?php echo htmlspecialchars($_SESSION['usuario']['nome'] ?? ''); ?>"
+                    value="<?php echo htmlspecialchars($_SESSION['usuario']['cpf'] ?? ''); ?>"
+                    class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    readonly
+                  />
+                </div> 
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
+                  <input
+                    type="email"
+                    value="<?php echo htmlspecialchars($_SESSION['usuario']['email'] ?? ''); ?>"
                     class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                     readonly
                   />
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >CPF</label
-                    >
-                    <input
-                      type="text"
-                      value="<?php echo htmlspecialchars($_SESSION['usuario']['cpf'] ?? ''); ?>"
-                      class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                      readonly
-                    />
-                  </div> 
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >E-mail</label
-                    >
-                    <input
-                      type="email"
-                      value="<?php echo htmlspecialchars($_SESSION['usuario']['email'] ?? ''); ?>"
-                      class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                      readonly
-                    />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >Telefone</label
-                    >
-                    <input
-                      type="tel"
-                      id="telefone"
-                      value="<?php echo htmlspecialchars($_SESSION['usuario']['telefone'] ?? ''); ?>"
-                      class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                      readonly
-                    />
-                  </div>
-
-                  
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >Senha</label
-                    >
-                    <input
-                      type="password"
-                      value="********"
-                      class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                      readonly
-                    />
-                    <button
-                      type="button"
-                      onclick="abrirModalSenha()"
-                      class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1"
-                    >
-                      Alterar senha
-                    </button>
-            
-                    <div id="modalSenha" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-                      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                        <h2 class="text-lg font-semibold mb-4">Alterar Senha</h2>
-
-                        <form action="../backend/controllers/changePassword.php" method="POST" class="space-y-3">
-                          <input type="password" name="senha_atual" placeholder="Senha atual" required class="w-full mb-3 p-3 border rounded-lg" />
-                          <input type="password" name="nova_senha" placeholder="Nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
-                          <input type="password" name="confirmar_senha" placeholder="Confirmar nova senha" required class="w-full mb-3 p-3 border rounded-lg" />
-
-                          <div class="flex justify-end gap-2 mt-4">
-                            <button type="button" onclick="fecharModalSenha()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors">Cancelar</button>
-                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">Salvar</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                  <input
+                    type="tel"
+                    id="telefone"
+                    value="<?php echo htmlspecialchars($_SESSION['usuario']['telefone'] ?? ''); ?>"
+                    class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    readonly
+                  />
                 </div>
-                
-                <div class="flex justify-end space-x-4 pt-6">
-                  <button
-                    type="button"
-                    class="px-6 py-3 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                  <input
+                    type="password"
+                    value="********"
+                    class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    readonly
+                  />
+                  <a
+                    href="redefinirSenha.php"
+                    class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1 block"
                   >
-                    Excluir minha conta
-                  </button>
+                    Alterar senha
+                  </a>
                 </div>
+              </div> <!-- fecha grid corretamente -->
+            </form>
+            <form id="deleteAccountForm" action="../backend/controllers/DeleteAccount.php" method="POST">
+              <div class="flex justify-end space-x-4 pt-6">
+                <button
+                  type="button"
+                  id="btnDeleteAccount"
+                  class="px-6 py-3 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                >
+                  Excluir minha conta
+                </button>
+              </div>
               </form>
-            </div>
+          </div>
+
 
             <div id="section-pedidos" class="section-content hidden">
               <h2 class="text-xl font-semibold text-gray-800 mb-8">
@@ -411,7 +386,7 @@ include '../includes/navbar.php';
             pagamento: 'Dinheiro',
             entrega: '15/12/2024 às 15:30'
           },
-          '12344': {
+          '12344': {  
             numero: '12344',
             data: '10/12/2024',
             status: 'Em preparo',

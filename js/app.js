@@ -44,6 +44,36 @@ if (deleteSenha && deleteSenhaForm) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const btnPedido = document.getElementById("btnPedido"); // botão "Realizar Pedido"
+
+  btnPedido.addEventListener("click", function () {
+    const numeroPedido = Math.floor(1000 + Math.random() * 9000);
+
+    const sabor = document.getElementById("selected-sabor").innerText;
+    const recheio = document.getElementById("selected-recheio").innerText;
+    const topo = document.getElementById("selected-topo").innerText;
+    const decoracao = document.getElementById("selected-decoracao").innerText;
+
+    Swal.fire({
+      title: `Pedido #${numeroPedido} realizado!
+      Agora aguarde o retorno do seu orçamento!`,
+      html: `
+        <div style="text-align:left">
+          <p><b>Sabor:</b> ${sabor}</p>
+          <p><b>Recheio:</b> ${recheio}</p>
+          <p><b>Topo:</b> ${topo}</p>
+          <p><b>Decoração:</b> ${decoracao}</p>
+        </div>
+      `,
+      icon: "success",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#d33",
+    });
+  });
+});
+
+
 //O que controla os slides do site
 let currentSlide = 0;
 const slides = document.querySelectorAll("#carousel > div");

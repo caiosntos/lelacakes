@@ -18,6 +18,7 @@ session_start();
       rel="stylesheet"
     />
     <script src="../js/app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../site/style.css" />
     <script>
       // JavaScript para o dropdown do usuário
@@ -396,11 +397,14 @@ session_start();
               </div>
               <div class="text-center">
                 <button
+                  type="button"
+                  id="btnPedido"
+                  onclick="realizarPedido()"
                   class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full text-xl font-bold hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-red-600 hover:to-red-700 mb-4"
                 >
                   Realizar Pedido
                 </button>
-                <p class="text-sm text-gray-500">
+                <p class="text-sm text-gray-500" id="statusPedido">
                   Complete todas as etapas para finalizar
                 </p>
               </div>
