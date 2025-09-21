@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../includes/navbar.php';
 require_once '../backend/config/database.php';
 
