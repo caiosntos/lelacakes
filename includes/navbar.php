@@ -23,7 +23,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["usuario"]["role"])) {
             >
               <i class="bi bi-cake2 text-4xl text-red-500"></i>
               <span
-                class="font-serif bg-gradient-to-r from-red-500 to-red-700 to-cake-gold bg-clip-text text-transparent"
+                class="font-heading bg-gradient-to-r from-red-500 to-red-700 to-cake-gold bg-clip-text text-transparent"
                 >Lela Cakes</span
               >
             </a>

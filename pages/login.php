@@ -16,7 +16,7 @@ session_start();
       </script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
       />
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet" />
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="../js/app.js" defer>
@@ -31,8 +31,8 @@ session_start();
                 "cake-cream": "#FFF5E6",
               },
               fontFamily: {
-                serif: ["Playfair Display", "serif"],
-                sans: ["Inter", "sans-serif"],
+                'heading': ["Poppins", "sans-serif"],
+                'sans': ["Inter", "sans-serif"],
               },
             },
           },
@@ -48,7 +48,7 @@ session_start();
               <a href="../index.php" class="flex items-center space-x-3 text-3xl font-bold">
                 <i class="bi bi-cake2 text-4xl text-cake-red">
                 </i>
-                <span class="font-serif from-red-500 text-cake-red">
+                <span class="font-heading from-red-500 text-cake-red">
                   Lela Cakes
                 </span>
               </a>
@@ -70,7 +70,7 @@ session_start();
       <div class="pt-28 pb-16">
         <div class="max-w-6xl mx-auto px-8">
           <div class="text-center mb-12">
-            <h1 class="text-5xl font-serif font-bold text-gray-800 mb-4">
+            <h1 class="text-5xl font-heading font-bold text-gray-800 mb-4">
               Acesse sua conta
             </h1>
             <div class="w-24 h-1 bg-cake-red mx-auto">
@@ -84,7 +84,7 @@ session_start();
                   <i class="bi bi-person text-white text-2xl">
                   </i>
                 </div>
-                <h2 class="text-3xl font-serif font-bold text-gray-800">
+                <h2 class="text-3xl font-heading font-bold text-gray-800">
                   Login
                 </h2>
                 <p class="text-gray-600 mt-2">
@@ -144,7 +144,7 @@ session_start();
                   <i class="bi bi-person-plus text-white text-2xl">
                   </i>
                 </div>
-                <h2 class="text-3xl font-serif font-bold text-gray-800">
+                <h2 class="text-3xl font-heading font-bold text-gray-800">
                   Registro
                 </h2>
                 <p class="text-gray-600 mt-2">

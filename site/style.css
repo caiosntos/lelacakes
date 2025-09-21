@@ -1,6 +1,3 @@
-.font-serif { font-family: 'Playfair Display', serif; }
-.font-sans { font-family: 'Inter', sans-serif; }
-
 .gradient-text {
     background: linear-gradient(to right, #e53935);
     -webkit-background-clip: text;

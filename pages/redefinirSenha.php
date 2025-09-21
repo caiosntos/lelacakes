@@ -9,7 +9,7 @@ include '../includes/navbar.php';
     <title>Login - Lela Cakes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/app.js" defer></script>
     <link rel="stylesheet" href="../site/site.css" />
@@ -22,8 +22,8 @@ include '../includes/navbar.php';
               "cake-cream": "#FFF5E6",
             },
             fontFamily: {
-              serif: ["Playfair Display", "serif"],
-              sans: ["Inter", "sans-serif"],
+              'heading': ["Poppins", "sans-serif"],
+              'sans': ["Inter", "sans-serif"],
             },
           },
         },

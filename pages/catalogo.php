@@ -14,7 +14,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script src="../js/app.js" defer></script>
@@ -28,8 +28,8 @@
               "cake-cream": "#FFF5E6",
             },
             fontFamily: {
-              serif: ["Playfair Display", "serif"],
-              sans: ["Inter", "sans-serif"],
+              'heading': ["Poppins", "sans-serif"],
+              'sans': ["Inter", "sans-serif"],
             },
           },
         },
@@ -49,7 +49,7 @@
         <div
           class="flex items-center justify-between p-6 border-b border-gray-200"
         >
-          <h3 class="text-2xl font-serif font-bold text-gray-800">
+          <h3 class="text-2xl font-heading font-bold text-gray-800">
             Adicionar ao Carrinho
           </h3>
           <button
@@ -70,7 +70,7 @@
             <div>
               <h4
                 id="modal-title"
-                class="text-xl font-serif font-bold text-gray-800 mb-1"
+                class="text-xl font-heading font-bold text-gray-800 mb-1"
               ></h4>
               <p id="modal-description" class="text-gray-600 text-sm"></p>
             </div>
@@ -166,7 +166,7 @@
           class="flex justify-between items-center mb-12 pb-6 border-b-2 border-gradient-to-r from-cake-pink/20 to-cake-gold/20"
         >
           <div>
-            <h1 class="text-5xl font-serif font-bold text-gray-800 mb-2">
+            <h1 class="text-5xl font-heading font-bold text-gray-800 mb-2">
               Catálogo Pronta Entrega
             </h1>
             <div
@@ -214,7 +214,7 @@
             </div>
             <div class="p-8">
               <h5
-                class="text-2xl font-serif font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
+                class="text-2xl font-heading font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
               >
                 Bolo de chocolate
               </h5>
@@ -257,7 +257,7 @@
             </div>
             <div class="p-8">
               <h5
-                class="text-2xl font-serif font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
+                class="text-2xl font-heading font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
               >
                 Bolo de rolo
               </h5>
@@ -300,7 +300,7 @@
             </div>
             <div class="p-8">
               <h5
-                class="text-2xl font-serif font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
+                class="text-2xl font-heading font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
               >
                 Docinhos
               </h5>
@@ -328,7 +328,7 @@
           class="mt-20 text-center bg-gradient-to-r from-red-500 to-red-600 rounded-3xl p-12"
         >
           <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
-            <h3 class="text-4xl font-serif font-bold text-white mb-4">
+            <h3 class="text-4xl font-heading font-bold text-white mb-4">
               Não encontrou o que procura?
             </h3>
             <p class="text-white/90 text-xl mb-8 leading-relaxed">

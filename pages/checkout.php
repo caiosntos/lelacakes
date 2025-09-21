@@ -14,7 +14,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../site/style.css" />
@@ -28,8 +28,8 @@
               "cake-cream": "#FFF5E6",
             },
             fontFamily: {
-              serif: ["Playfair Display", "serif"],
-              sans: ["Inter", "sans-serif"],
+              'heading': ["Poppins", "sans-serif"],
+              'sans': ["Inter", "sans-serif"],
             },
           },
         },
@@ -41,7 +41,7 @@
     <main class="pt-28 pb-16">
       <div class="max-w-6xl mx-auto px-8">
         <div class="mb-12 text-center">
-          <h1 class="text-5xl font-serif font-bold text-gray-800 mb-4">
+          <h1 class="text-5xl font-heading font-bold text-gray-800 mb-4">
             Meu Carrinho
           </h1>
           <div
@@ -60,7 +60,7 @@
                   alt="Bolo de Chocolate"
                 />
                 <div class="flex-1">
-                  <h3 class="text-2xl font-serif font-bold text-gray-800 mb-2">
+                  <h3 class="text-2xl font-heading font-bold text-gray-800 mb-2">
                     Bolo de Chocolate
                   </h3>
                   <p class="text-gray-600 mb-3">
@@ -109,7 +109,7 @@
                   alt="Bolo de Rolo"
                 />
                 <div class="flex-1">
-                  <h3 class="text-2xl font-serif font-bold text-gray-800 mb-2">
+                  <h3 class="text-2xl font-heading font-bold text-gray-800 mb-2">
                     Bolo de Rolo
                   </h3>
                   <p class="text-gray-600 mb-3">
@@ -158,7 +158,7 @@
                   alt="Docinhos"
                 />
                 <div class="flex-1">
-                  <h3 class="text-2xl font-serif font-bold text-gray-800 mb-2">
+                  <h3 class="text-2xl font-heading font-bold text-gray-800 mb-2">
                     Docinhos Variados
                   </h3>
                   <p class="text-gray-600 mb-3">
@@ -210,7 +210,7 @@
           <div class="space-y-8">
             <div class="bg-white rounded-3xl shadow-xl p-8 sticky top-32">
               <h2
-                class="text-3xl font-serif font-bold text-gray-800 mb-6 flex items-center"
+                class="text-3xl font-heading font-bold text-gray-800 mb-6 flex items-center"
               >
                 <i class="bi bi-calculator text-red-500 mr-4"></i>
                 Resumo
@@ -267,7 +267,7 @@
             >
               <i class="bi bi-cart-x text-6xl text-red-400"></i>
             </div>
-            <h2 class="text-3xl font-serif font-bold text-gray-800 mb-4">
+            <h2 class="text-3xl font-heading font-bold text-gray-800 mb-4">
               Seu carrinho está vazio
             </h2>
             <p class="text-gray-600 mb-8 text-lg">

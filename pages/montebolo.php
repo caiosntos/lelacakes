@@ -1,5 +1,4 @@
 <?php
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +13,7 @@ session_start();
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script src="../js/app.js" defer></script>
@@ -49,8 +48,8 @@ session_start();
               "cake-cream": "#FFF5E6",
             },
             fontFamily: {
-              serif: ["Playfair Display", "serif"],
-              sans: ["Inter", "sans-serif"],
+              'heading': ["Poppins", "sans-serif"],
+              'sans': ["Inter", "sans-serif"],
             },
           },
         },
@@ -64,7 +63,7 @@ session_start();
     <div class="pt-24 pb-16">
       <div class="max-w-7xl mx-auto px-8">
         <div class="text-center mb-12">
-          <h1 class="text-6xl font-serif font-bold text-gray-800 mb-4">
+          <h1 class="text-6xl font-heading font-bold text-gray-800 mb-4">
             Monte Seu Bolo
           </h1>
           <div
@@ -112,7 +111,7 @@ session_start();
                 >
                   1
                 </div>
-                <h2 class="text-3xl font-serif font-bold text-gray-800">
+                <h2 class="text-3xl font-heading font-bold text-gray-800">
                   Escolha o Sabor do Bolo
                 </h2>
               </div>
@@ -175,7 +174,7 @@ session_start();
                 >
                   2
                 </div>
-                <h2 class="text-3xl font-serif font-bold text-gray-400">
+                <h2 class="text-3xl font-heading font-bold text-gray-400">
                   Recheio
                 </h2>
               </div>
@@ -235,7 +234,7 @@ session_start();
                 >
                   3
                 </div>
-                <h2 class="text-3xl font-serif font-bold text-gray-400">
+                <h2 class="text-3xl font-heading font-bold text-gray-400">
                   Topo
                 </h2>
               </div>
@@ -295,7 +294,7 @@ session_start();
                 >
                   4
                 </div>
-                <h2 class="text-3xl font-serif font-bold text-gray-400">
+                <h2 class="text-3xl font-heading font-bold text-gray-400">
                   Decoração
                 </h2>
               </div>
@@ -352,7 +351,7 @@ session_start();
           <div class="lg:col-span-1">
             <div class="bg-white rounded-3xl shadow-xl p-8 sticky top-32">
               <h3
-                class="text-2xl font-serif font-bold text-gray-800 mb-6 text-center"
+                class="text-2xl font-heading font-bold text-gray-800 mb-6 text-center"
               >
                 Seu Bolo Customizado
               </h3>

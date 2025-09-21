@@ -14,7 +14,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script src="js/app.js" defer></script>
@@ -28,8 +28,8 @@
               "cake-cream": "#FFF5E6",
             },
             fontFamily: {
-              serif: ["Playfair Display", "serif"],
-              sans: ["Inter", "sans-serif"],
+              'heading': ["Poppins", "sans-serif"],
+              'sans': ["Inter", "sans-serif"],
             },
           },
         },
@@ -53,7 +53,7 @@
           <div class="relative z-10 flex items-center h-full">
             <div class="max-w-7xl mx-auto px-8">
               <div class="text-left text-white max-w-2xl">
-                <h1 class="text-7xl font-serif font-bold mb-6 leading-tight">
+                <h1 class="text-7xl font-heading font-bold mb-6 leading-tight">
                   <span class="block">Lela</span>
                   <span class="block text-red-500">Cakes</span>
                 </h1>
@@ -81,7 +81,7 @@
           ></div>
           <div class="relative z-10 flex items-center justify-center h-full">
             <div class="text-center text-white max-w-3xl px-8">
-              <h1 class="text-6xl font-serif font-bold mb-6 text-shadow-lg">
+              <h1 class="text-6xl font-heading font-bold mb-6 text-shadow-lg">
                 Docinhos e muito mais!
               </h1>
             </div>
@@ -98,7 +98,7 @@
           ></div>
           <div class="relative z-10 flex items-center justify-end h-full">
             <div class="text-right text-white max-w-2xl px-8">
-              <h1 class="text-6xl font-serif font-bold mb-6 text-shadow-lg">
+              <h1 class="text-6xl font-heading font-bold mb-6 text-shadow-lg">
                 Sabores únicos para momentos especiais
               </h1>
               <p class="text-xl text-gray-200 mb-8">
@@ -141,7 +141,7 @@
     <section class="py-20 bg-gradient-to-b from-white to-orange-50">
       <div class="max-w-7xl mx-auto px-8">
         <div class="text-center mb-16">
-          <h2 class="text-5xl font-serif font-bold text-gray-800 mb-4">
+          <h2 class="text-5xl font-heading font-bold text-gray-800 mb-4">
             Nossos Destaques
           </h2>
           <div
@@ -164,7 +164,7 @@
               ></div>
             </div>
             <div class="p-8 text-center">
-              <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">
+              <h3 class="text-2xl font-heading font-bold text-gray-800 mb-4">
                 Bolo de Chocolate
               </h3>
               <p class="text-gray-600 mb-6 leading-relaxed">
@@ -193,7 +193,7 @@
               ></div>
             </div>
             <div class="p-8 text-center">
-              <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">
+              <h3 class="text-2xl font-heading font-bold text-gray-800 mb-4">
                 Bolo de Rolo
               </h3>
               <p class="text-gray-600 mb-6 leading-relaxed">
@@ -222,7 +222,7 @@
               ></div>
             </div>
             <div class="p-8 text-center">
-              <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">
+              <h3 class="text-2xl font-heading font-bold text-gray-800 mb-4">
                 Docinhos
               </h3>
               <p class="text-gray-600 mb-6 leading-relaxed">
@@ -243,7 +243,7 @@
     <section class="py-20 bg-gradient-to-r from-red-400 via-red-600 to-red-700">
       <div class="max-w-4xl mx-auto text-center px-8">
         <div class="glass rounded-3xl p-12 shadow-2xl">
-          <h2 class="text-5xl font-serif font-bold text-white mb-6">
+          <h2 class="text-5xl font-heading font-bold text-white mb-6">
             Monte também seu orçamento
           </h2>
           <p class="text-xl text-white mb-8 leading-relaxed opacity-90">
