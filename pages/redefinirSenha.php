@@ -81,5 +81,28 @@ include '../includes/navbar.php';
         </div>
       </form>
     </div>
+    <script>
+      const deleteSenha = document.getElementById("btnDeleteSenha");
+      const deleteSenhaForm = document.getElementById("formAlterarSenha");
+
+      if (deleteSenha && deleteSenhaForm) {
+        deleteSenha.addEventListener("click", function () {
+          Swal.fire({
+            title: "Tem certeza?",
+            text: "Deseja realmente alterar sua senha?",
+            icon: "success",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#6b7280",
+            confirmButtonText: "Sim, alterar!",
+            cancelButtonText: "Cancelar",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              deleteSenhaForm.submit();
+            }
+          });
+        });
+      }
+    </script>
   </body>
 </html>
