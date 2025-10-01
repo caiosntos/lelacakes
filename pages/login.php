@@ -119,7 +119,7 @@ session_start();
                 <p class="text-center text-gray-600 mb-4">
                   Esqueceu sua senha?
                 </p>
-                <a href="#" id="linkRecuperar" class="block text-center text-cake-red hover:text-red-700 font-medium transition-colors duration-300">
+                <a href="redefinirSenhaLogin.php" id="linkRecuperar" class="block text-center text-cake-red hover:text-red-700 font-medium transition-colors duration-300">
                   Clique aqui para recuperar
                 </a>
               </div>
@@ -248,90 +248,6 @@ session_start();
                 </form>
               </div>
             </div>
-
-            <script>
-              document.addEventListener('DOMContentLoaded', function() {
-                const linkRecuperar = document.getElementById('linkRecuperar');
-                const modal = document.getElementById('modalEsqueci');
-                const btnFechar = document.getElementById('btnFecharEsqueci');
-                const btnCancelar = document.getElementById('btnCancelarEsqueci');
-                const emailLogin = document.querySelector('input[name="email"]');
-                const emailEsqueci = document.getElementById('emailEsqueci');
-                const formEsqueci = document.getElementById('formEsqueci');
-                const novaSenha = document.getElementById('novaSenhaEsqueci');
-                const confirmarSenha = document.getElementById('confirmarSenhaEsqueci');
-                const erroNova = document.getElementById('erroNovaSenha');
-                const erroConf = document.getElementById('erroConfirmarSenha');
-
-                function abrirModalEsqueci() {
-                  emailEsqueci.value = emailLogin.value || 'usuario@exemplo.com';
-                  modal.classList.remove('hidden');
-                  modal.classList.add('flex');
-                }
-
-                function fecharModalEsqueci() {
-                  modal.classList.add('hidden');
-                  modal.classList.remove('flex');
-                  formEsqueci.reset();
-                  erroNova.classList.add('hidden');
-                  erroConf.classList.add('hidden');
-                  novaSenha.classList.remove('border-red-500');
-                  confirmarSenha.classList.remove('border-red-500');
-                }
-
-                linkRecuperar.addEventListener('click', function(e) {
-                  e.preventDefault();
-                  abrirModalEsqueci();
-                });
-                btnFechar.addEventListener('click', fecharModalEsqueci);
-                btnCancelar.addEventListener('click', fecharModalEsqueci);
-                modal.addEventListener('click', function(e) {
-                  if (e.target === modal) fecharModalEsqueci();
-                });
-                document.addEventListener('keydown', function(e) {
-                  if (e.key === 'Escape') fecharModalEsqueci();
-                });
-
-                // Validação em tempo real
-                novaSenha.addEventListener('input', function() {
-                  if (this.value.length > 0 && this.value.length < 6) {
-                    erroNova.classList.remove('hidden');
-                    this.classList.add('border-red-500');
-                  } else {
-                    erroNova.classList.add('hidden');
-                    this.classList.remove('border-red-500');
-                  }
-                });
-                confirmarSenha.addEventListener('input', function() {
-                  if (this.value.length > 0 && this.value !== novaSenha.value) {
-                    erroConf.classList.remove('hidden');
-                    this.classList.add('border-red-500');
-                  } else {
-                    erroConf.classList.add('hidden');
-                    this.classList.remove('border-red-500');
-                  }
-                });
-
-                // Submit (apenas front-end)
-                formEsqueci.addEventListener('submit', function(e) {
-                  e.preventDefault();
-                  let valido = true;
-                  if (novaSenha.value.length < 6) { valido = false; erroNova.classList.remove('hidden'); novaSenha.classList.add('border-red-500'); }
-                  if (confirmarSenha.value !== novaSenha.value) { valido = false; erroConf.classList.remove('hidden'); confirmarSenha.classList.add('border-red-500'); }
-
-                  if (!valido) return;
-
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Senha redefinida!',
-                    text: `Uma nova senha foi definida para ${emailEsqueci.value}.`,
-                    confirmButtonColor: '#e53935'
-                  }).then(() => {
-                    fecharModalEsqueci();
-                  });
-                });
-              });
-            </script>
     </body>
   
   </html>
