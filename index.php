@@ -259,50 +259,6 @@
         </div>
       </div>
     </section>
-    <footer class="bg-gradient-to-br from-white text-red py-16">
-      <div class="max-w-7xl mx-auto px-8">
-        <div class="text-center">
-          <div class="flex justify-center space-x-8 mb-8">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              class="bg-red bg-opacity-10 hover:bg-red-500 p-4 rounded-full text-2xl transition-all duration-300 hover:scale-110"
-            >
-              <i class="bi bi-facebook"></i>
-            </a>
-            <a
-              href="https://www.twitter.com"
-              target="_blank"
-              class="bg-red bg-opacity-10 hover:bg-red-500 p-4 rounded-full text-2xl transition-all duration-300 hover:scale-110"
-            >
-              <i class="bi bi-twitter"></i>
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              class="bg-red bg-opacity-10 hover:bg-red-500 p-4 rounded-full text-2xl transition-all duration-300 hover:scale-110"
-            >
-              <i class="bi bi-instagram"></i>
-            </a>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              class="bg-red bg-opacity-10 hover:bg-red-500 p-4 rounded-full text-2xl transition-all duration-300 hover:scale-110"
-            >
-              <i class="bi bi-linkedin"></i>
-            </a>
-          </div>
-          <p class="text-gray-400 text-lg">
-            &copy; 2025 Lela Cakes. Todos os direitos reservados.
-          </p>
-          <button
-            onclick="scrollToTop()"
-            class="back-to-top fixed bottom-8 right-8 bg-gradient-to-r from-red-500 to-red-400 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
-          >
-            <i class="bi bi-arrow-up-circle text-2xl"></i>
-          </button>
-        </div>
-      </div>
-    </footer>
+      <?php include 'includes/footer.php'; ?>
   </body>
 </html> 
