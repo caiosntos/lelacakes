@@ -41,7 +41,8 @@ include '../includes/navbar.php';
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
             <input type="email" id="emailEsqueci" name="emailEsqueci"
-                class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100" required />
+                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" 
+                 placeholder="E-mail" required />
         </div>
 
         <div>
