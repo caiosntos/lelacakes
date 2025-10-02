@@ -76,7 +76,8 @@ include '../assets/includes/navbar.php';
         deleteSenha.addEventListener("click", function () {
           Swal.fire({
             title: "Tem certeza?",
-            text: "Deseja realmente alterar sua senha?",
+            text: "Deseja realmente alterar sua senha? " + 
+            "Após trocar a senha relogue no site novamente.",
             icon: "success",
             showCancelButton: true,
             confirmButtonColor: "#d33",
