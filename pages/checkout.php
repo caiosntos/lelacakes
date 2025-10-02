@@ -13,8 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../site/style.css" />
-    <script src="../js/app.js" defer></script>
+    <link rel="stylesheet" href="../assets/site/style.css" />
+    <script src="../assets/js/app.js" defer></script>
     <script>
       tailwind.config = {
         theme: {
@@ -33,7 +33,7 @@
     </script>
   </head>
   <body class="bg-gradient-to-br from-white via-white to-white-50 font-sans">
-    <?php include '../includes/navbar.php'; ?>
+    <?php include '../assets/includes/navbar.php'; ?>
     <main class="pt-28 pb-16">
       <div class="max-w-6xl mx-auto px-8">
         <div class="mb-12 text-center">
@@ -279,7 +279,7 @@
           </div>
         </div>
       </div>
-      <?php include '../includes/footer.php'; ?>
+      <?php include '../assets/includes/footer.php'; ?>
     </main>
   </body>
 </html> 

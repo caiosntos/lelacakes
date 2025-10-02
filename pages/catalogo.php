@@ -17,8 +17,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="../js/app.js" defer></script>
-    <link rel="stylesheet" href="../site/site.css" />
+    <script src="../assets/js/app.js" defer></script>
+    <link rel="stylesheet" href="../assets/site/style.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -38,7 +38,7 @@
   </head>
 
   <body class="bg-gradient-to-br from-white via-white to-white font-sans">
-    <?php include '../includes/navbar.php'; ?>
+    <?php include '../assets/includes/navbar.php'; ?>
     <div
       id="cart-modal"
       class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center"
@@ -351,7 +351,7 @@
         </div>
       </div>
     </main>
-    <?php include '../includes/footer.php'; ?>
+    <?php include '../assets/includes/footer.php'; ?>
     <button
       onclick="scrollToTop()"
       class="back-to-top fixed bottom-8 right-8 bg-gradient-to-r from-cake-pink to-orange-400 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 opacity-0"

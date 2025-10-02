@@ -16,9 +16,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="../js/app.js" defer></script>
+    <script src="../assets/js/app.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="../site/style.css" />
+    <link rel="stylesheet" href="../assets/site/style.css" />
     <script>
       // JavaScript para o dropdown do usuário
       document.addEventListener('DOMContentLoaded', function() {
@@ -58,7 +58,7 @@
   </head>
 
   <body class="bg-gradient-to-br from-orange-50 via-white to-pink-50 font-sans">
-    <?php include('../includes/navbar.php'); ?>
+    <?php include('../assets/includes/navbar.php'); ?>
     
     <div class="pt-24 pb-16">
       <div class="max-w-7xl mx-auto px-8">

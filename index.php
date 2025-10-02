@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="js/app.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
     <link rel="stylesheet" href="site/style.css" />
     <script>
       tailwind.config = {
@@ -38,7 +38,7 @@
   </head>
 
   <body class="bg-gradient-to-br from-orange-50 via-white to-pink-50 font-sans">
-    <?php include 'includes/navbar.php'; ?>
+    <?php include 'assets/includes/navbar.php'; ?>
     <div class="relative h-screen overflow-hidden mt-20">
       <div id="carousel" class="flex h-full carousel-container">
         <div class="min-w-full h-full relative">
@@ -259,6 +259,6 @@
         </div>
       </div>
     </section>
-      <?php include 'includes/footer.php'; ?>
+      <?php include 'assets/includes/footer.php'; ?>
   </body>
 </html> 
