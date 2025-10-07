@@ -121,12 +121,14 @@ try {
               <!-- Formulário de Produto -->
               <div id="product-form" class="hidden mb-8 p-6 bg-gray-50 rounded-xl">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Novo Produto</h3>
-                <form class="space-y-4">
+                <form class="space-y-4" action="../backend/controllers/ProductController.php" method="POST">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label class="block text-sm font-medium text-gray-700 mb-2">Nome do Produto</label>
                       <input
                         type="text"
+                        name="nomeproduto"
+                        value="<?= htmlspecialchars($nome ?? '') ?>"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                         placeholder="Ex: Bolo de Chocolate"
                       />
@@ -135,6 +137,8 @@ try {
                       <label class="block text-sm font-medium text-gray-700 mb-2">Preço (R$)</label>
                       <input
                         type="number"
+                        name="preco"
+                        value="<?= htmlspecialchars($preco ?? '') ?>"
                         step="0.01"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                         placeholder="89.90"
@@ -144,6 +148,8 @@ try {
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
                     <textarea
+                      name="descricao"
+                      value="<?= htmlspecialchars($descricao ?? '') ?>"
                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all h-24"
                       placeholder="Descreva o produto..."
                     ></textarea>
@@ -151,19 +157,17 @@ try {
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label class="block text-sm font-medium text-gray-700 mb-2">Categoria</label>
-                      <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all">
-                        <option value="">Selecione uma categoria</option>
-                        <option value="bolos">Bolos</option>
-                        <option value="doces">Doces</option>
-                        <option value="tortas">Tortas</option>
-                        <option value="salgados">Salgados</option>
+                      <select value="<?= htmlspecialchars($categoria ?? '') ?>" name="categoria-produto" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all">
+                      <option value="">Selecione uma categoria</option>
+                      <option value="bolos" <?= ($categoria ?? '') === 'bolos' ? 'selected' : '' ?>>Ativo</option>
+                      <option value="doces" <?= ($categoria ?? '') === 'doces' ? 'selected' : '' ?>>Inativo</option>
                       </select>
                     </div>
                     <div>
                       <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                      <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all">
-                        <option value="ativo">Ativo</option>
-                        <option value="inativo">Inativo</option>
+                      <select value="<?= htmlspecialchars($status_produtos ?? '') ?>" name="status" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all">
+                      <option value="ativo" <?= ($status_produtos ?? '') === 'ativo' ? 'selected' : '' ?>>Ativo</option>
+                      <option value="inativo" <?= ($status_produtos ?? '') === 'inativo' ? 'selected' : '' ?>>Inativo</option>
                       </select>
                     </div>
                   </div>

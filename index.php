@@ -1,7 +1,5 @@
 <?php
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -18,7 +16,7 @@
       rel="stylesheet"
     />
     <script src="assets/js/app.js" defer></script>
-    <link rel="stylesheet" href="site/style.css" />
+    <link rel="stylesheet" href="assets/site/style.css" />
     <script>
       tailwind.config = {
         theme: {
