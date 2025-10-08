@@ -1,4 +1,4 @@
-<?php
+  <?php
 include '../assets/includes/navbar.php';
 ?>
 

@@ -1,6 +1,8 @@
 <?php
 include '../assets/includes/navbar.php';
 require_once '../backend/config/database.php';
+require "../backend/controllers/ProductController.php"; 
+
 
 // Buscar usuários do banco de dados
 try {
@@ -11,6 +13,7 @@ try {
     $usuarios = [];
     $erro_usuarios = "Erro ao carregar usuários: " . $e->getMessage();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +124,7 @@ try {
               <!-- Formulário de Produto -->
               <div id="product-form" class="hidden mb-8 p-6 bg-gray-50 rounded-xl">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Novo Produto</h3>
-                <form class="space-y-4" action="../backend/controllers/ProductController.php" method="POST">
+                <form class="space-y-4" action="../backend/controllers/RegisterProdController.php" method="POST">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label class="block text-sm font-medium text-gray-700 mb-2">Nome do Produto</label>
@@ -159,8 +162,8 @@ try {
                       <label class="block text-sm font-medium text-gray-700 mb-2">Categoria</label>
                       <select value="<?= htmlspecialchars($categoria ?? '') ?>" name="categoria-produto" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all">
                       <option value="">Selecione uma categoria</option>
-                      <option value="bolos" <?= ($categoria ?? '') === 'bolos' ? 'selected' : '' ?>>Ativo</option>
-                      <option value="doces" <?= ($categoria ?? '') === 'doces' ? 'selected' : '' ?>>Inativo</option>
+                      <option value="bolos" <?= ($categoria ?? '') === 'bolos' ? 'selected' : '' ?>>Bolos</option>
+                      <option value="doces" <?= ($categoria ?? '') === 'doces' ? 'selected' : '' ?>>Doces</option>
                       </select>
                     </div>
                     <div>
@@ -197,59 +200,60 @@ try {
                 </form>
               </div>
 
-              <!-- Lista de Produtos -->
-              <div class="space-y-4">
-                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center">
-                      <img src="../img/courtney-cook-CIKN2MfSp1Q-unsplash.jpg" alt="Bolo" class="w-16 h-16 rounded-lg mr-4 object-cover" />
-                      <div>
-                        <h3 class="font-semibold text-gray-800">Bolo de Chocolate</h3>
-                        <p class="text-sm text-gray-600">Massa de chocolate com recheio de brigadeiro</p>
-                        <p class="text-sm text-gray-500">Categoria: Bolos</p>
-                      </div>
+           <div class="space-y-4">
+                <?php if (!empty($produtos)): ?>
+                    <?php foreach ($produtos as $produto): ?>
+                        <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <img src="<?= htmlspecialchars($produto['imagem_url'] ?? '') ?>" 
+                                        alt="<?= htmlspecialchars($produto['nome']) ?>" 
+                                        class="w-16 h-16 rounded-lg mr-4 object-cover bg-gray-100" 
+                                        onerror="this.src=''" />
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800"><?= htmlspecialchars($produto['nome']) ?></h3>
+                                        <p class="text-sm text-gray-600"><?= htmlspecialchars($produto['descricao']) ?></p>
+                                        <p class="text-sm text-gray-500">Categoria: <?= htmlspecialchars($produto['categoria']) ?></p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-semibold text-gray-800 text-lg">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></p>
+                                    <span class="inline-block mt-1 px-2 py-1 <?= strtolower($produto['status_produtos']) === 'ativo' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500' ?> rounded text-xs font-medium">
+                                        <?= ucfirst(strtolower($produto['status_produtos'])) ?>
+                                    </span>
+                                    <?php if ($produto['destaque'] == 1): ?>
+                                        <span class="inline-block mt-1 ml-1 px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-medium">
+                                            ⭐ Destaque
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="flex justify-end space-x-2 pt-4 border-t border-gray-100">
+                                <a href="editar-produto.php?id=<?= $produto['idproduto'] ?>" 
+                                   class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium">
+                                    Editar
+                                </a>
+                                <button onclick="confirmarExclusao(<?= $produto['idproduto'] ?>, '<?= htmlspecialchars($produto['nome'], ENT_QUOTES) ?>')"
+                                        class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm font-medium">
+                                    Excluir
+                                </button>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="bg-white border border-gray-200 rounded-xl p-12 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        </svg>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Nenhum produto cadastrado</h3>
+                        <p class="text-gray-500 mb-4">Comece adicionando seu primeiro produto.</p>
+                        <a href="adicionar-produto.php" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                            Adicionar Produto
+                        </a>
                     </div>
-                    <div class="text-right">
-                      <p class="font-semibold text-gray-800">R$ 89,90</p>
-                      <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">Ativo</span>
-                    </div>
-                  </div>
-                  <div class="flex justify-end space-x-2">
-                    <button class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm">
-                      Editar
-                    </button>
-                    <button class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm">
-                      Excluir
-                    </button>
-                  </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center">
-                      <img src="../img/julia-peretiatko-oXfOK1ymtPU-unsplash.jpg" alt="Doces" class="w-16 h-16 rounded-lg mr-4 object-cover" />
-                      <div>
-                        <h3 class="font-semibold text-gray-800">Docinhos Variados</h3>
-                        <p class="text-sm text-gray-600">Seleção de doces artesanais</p>
-                        <p class="text-sm text-gray-500">Categoria: Doces</p>
-                      </div>
-                    </div>
-                    <div class="text-right">
-                      <p class="font-semibold text-gray-800">R$ 45,00</p>
-                      <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">Ativo</span>
-                    </div>
-                  </div>
-                  <div class="flex justify-end space-x-2">
-                    <button class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm">
-                      Editar
-                    </button>
-                    <button class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm">
-                      Excluir
-                    </button>
-                  </div>
-                </div>
-              </div>
+                <?php endif; ?>
             </div>
+
 
             <!-- Seção Pedidos Admin -->
             <div id="pedidosAdmin" class="section-content hidden">
