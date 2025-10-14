@@ -577,3 +577,41 @@ function showSextion(section) {
   const span = activeNav.querySelector("span");
   if (span) span.classList.add("font-medium");
 }
+
+// Função para confirmar exclusão
+function confirmarExclusao(nomeProduto, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  
+  Swal.fire({
+    title: 'Confirmar Exclusão',
+    html: `<p>Tem certeza que deseja excluir o produto:</p><strong>"${nomeProduto}"</strong><br><br><p class="text-red-600 text-sm">`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#e53935',
+    cancelButtonColor: '#6b7280',
+    confirmButtonText: 'Sim, excluir!',
+    cancelButtonText: 'Cancelar',
+    reverseButtons: true,
+    focusCancel: true,
+    allowOutsideClick: false,
+    allowEscapeKey: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Se confirmou, submeter o formulário
+      const form = event.target.closest('form');
+      if (form) {
+        form.submit();
+      }
+    }
+    // Se cancelou, não faz nada
+  }).catch((error) => {
+    console.error('Erro no Sweet Alert:', error);
+  });
+  
+  // Retornar false para não submeter o formulário
+  return false;
+}
+

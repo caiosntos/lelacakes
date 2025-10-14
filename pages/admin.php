@@ -106,6 +106,21 @@ try {
           </div>
 
           <div class="flex-1 bg-white rounded-2xl shadow-lg p-8">
+            <!-- Mensagens de Sucesso/Erro -->
+            <?php if (isset($_GET['sucesso'])): ?>
+              <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                <i class="bi bi-check-circle mr-2"></i>
+                <?= htmlspecialchars($_GET['sucesso']) ?>
+              </div>
+            <?php endif; ?>
+            
+            <?php if (isset($_GET['erro'])): ?>
+              <div class="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                <i class="bi bi-exclamation-triangle mr-2"></i>
+                <?= htmlspecialchars($_GET['erro']) ?>
+              </div>
+            <?php endif; ?>
+            
             <!-- Seção Adicionar/Editar Produtos -->
             <div id="addProduto" class="section-content">
               <div class="flex justify-between items-center mb-8">
@@ -233,10 +248,15 @@ try {
                                    class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium">
                                     Editar
                                 </a>
-                                <button
-                                        class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm font-medium">
-                                    Excluir
-                                </button>
+                                <form method="POST" action="../backend/controllers/DeleteProductController.php" style="display: inline;">
+                                    <input type="hidden" name="produto_id" value="<?= $produto['idproduto'] ?>">
+                                    <button
+                                            type="button"
+                                            onclick="confirmarExclusao('<?= htmlspecialchars($produto['nome'], ENT_QUOTES) ?>', event)"
+                                            class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm font-medium">
+                                        Excluir
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     <?php endforeach; ?>
