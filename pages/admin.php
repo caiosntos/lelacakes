@@ -229,11 +229,11 @@ try {
                                 </div>
                             </div>
                             <div class="flex justify-end space-x-2 pt-4 border-t border-gray-100">
-                                <a href="editar-produto.php?id=<?= $produto['idproduto'] ?>" 
+                                <a 
                                    class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium">
                                     Editar
                                 </a>
-                                <button onclick="confirmarExclusao(<?= $produto['idproduto'] ?>, '<?= htmlspecialchars($produto['nome'], ENT_QUOTES) ?>')"
+                                <button
                                         class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm font-medium">
                                     Excluir
                                 </button>
@@ -253,7 +253,7 @@ try {
                     </div>
                 <?php endif; ?>
             </div>
-
+          </div>
 
             <!-- Seção Pedidos Admin -->
             <div id="pedidosAdmin" class="section-content hidden">
