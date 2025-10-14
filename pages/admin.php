@@ -244,19 +244,24 @@ try {
                                 </div>
                             </div>
                             <div class="flex justify-end space-x-2 pt-4 border-t border-gray-100">
-                                <a 
-                                   class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium">
-                                    Editar
-                                </a>
-                                <form method="POST" action="../backend/controllers/DeleteProductController.php" style="display: inline;">
-                                    <input type="hidden" name="produto_id" value="<?= $produto['idproduto'] ?>">
+                                <div class="w-20">
                                     <button
-                                            type="button"
-                                            onclick="confirmarExclusao('<?= htmlspecialchars($produto['nome'], ENT_QUOTES) ?>', event)"
-                                            class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm font-medium">
-                                        Excluir
+                                            onclick="abrirModalEdicao(<?= $produto['idproduto'] ?>, '<?= htmlspecialchars($produto['nome'], ENT_QUOTES) ?>', <?= $produto['preco'] ?>, '<?= htmlspecialchars($produto['status_produtos'], ENT_QUOTES) ?>')"
+                                            class="w-full px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium">
+                                        Editar
                                     </button>
-                                </form>
+                                </div>
+                                <div class="w-20">
+                                    <form method="POST" action="../backend/controllers/DeleteProductController.php">
+                                        <input type="hidden" name="produto_id" value="<?= $produto['idproduto'] ?>">
+                                        <button
+                                                type="button"
+                                                onclick="confirmarExclusao('<?= htmlspecialchars($produto['nome'], ENT_QUOTES) ?>', event)"
+                                                class="w-full px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors text-sm font-medium">
+                                            Excluir
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -267,9 +272,6 @@ try {
                         </svg>
                         <h3 class="text-lg font-medium text-gray-900 mb-2">Nenhum produto cadastrado</h3>
                         <p class="text-gray-500 mb-4">Comece adicionando seu primeiro produto.</p>
-                        <a href="adicionar-produto.php" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                            Adicionar Produto
-                        </a>
                     </div>
                 <?php endif; ?>
             </div>
@@ -826,6 +828,82 @@ try {
               </button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Edição de Produto -->
+    <div id="modalEdicao" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md m-4">
+        <div class="p-6">
+          <!-- Header do Modal -->
+          <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-800">Editar Produto</h2>
+            <button onclick="fecharModalEdicao()" class="text-gray-500 hover:text-gray-700 text-2xl">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+
+          <!-- Formulário de Edição -->
+          <form method="POST" action="../backend/controllers/EditProductController.php" id="formEdicao">
+            <input type="hidden" name="produto_id" id="produto_id_edit" value="">
+            
+            <!-- Nome do Produto (somente leitura) -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Produto</label>
+              <input
+                type="text"
+                id="nome_produto_edit"
+                class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-600"
+                readonly
+              />
+            </div>
+
+            <!-- Novo Preço -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Novo Preço (R$)</label>
+              <input
+                type="number"
+                name="novo_preco"
+                id="novo_preco_edit"
+                step="0.01"
+                min="0"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                placeholder="Ex: 89.90"
+              />
+            </div>
+
+            <!-- Novo Status -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+              <select
+                name="novo_status"
+                id="novo_status_edit"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+              >
+                <option value="">Manter status atual</option>
+                <option value="ativo">Ativo</option>
+                <option value="inativo">Inativo</option>
+              </select>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+              <button
+                type="button"
+                onclick="fecharModalEdicao()"
+                class="px-6 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Salvar Alterações
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

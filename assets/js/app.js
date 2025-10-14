@@ -671,3 +671,51 @@ function realizarPedido() {
   });
 }
 
+// Funções para modal de edição de produto
+function abrirModalEdicao(produtoId, nomeProduto, precoAtual, statusAtual) {
+  // Preencher os campos do modal
+  document.getElementById('produto_id_edit').value = produtoId;
+  document.getElementById('nome_produto_edit').value = nomeProduto;
+  document.getElementById('novo_preco_edit').value = precoAtual;
+  
+  // Selecionar o status atual no select
+  const selectStatus = document.getElementById('novo_status_edit');
+  selectStatus.value = statusAtual;
+  
+  // Mostrar o modal
+  document.getElementById('modalEdicao').classList.remove('hidden');
+  
+  // Focar no campo de preço
+  setTimeout(() => {
+    document.getElementById('novo_preco_edit').focus();
+  }, 100);
+}
+
+function fecharModalEdicao() {
+  // Limpar formulário
+  document.getElementById('formEdicao').reset();
+  document.getElementById('produto_id_edit').value = '';
+  
+  // Esconder o modal
+  document.getElementById('modalEdicao').classList.add('hidden');
+}
+
+// Fechar modal de edição ao clicar fora dele
+document.addEventListener('DOMContentLoaded', function() {
+  const modalEdicao = document.getElementById('modalEdicao');
+  if (modalEdicao) {
+    modalEdicao.addEventListener('click', function(e) {
+      if (e.target === this) {
+        fecharModalEdicao();
+      }
+    });
+  }
+  
+  // Fechar modal de edição com ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      fecharModalEdicao();
+    }
+  });
+});
+
