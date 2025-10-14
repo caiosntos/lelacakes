@@ -380,23 +380,33 @@ document.addEventListener("DOMContentLoaded", function () {
 // -------------------------------
 // ⬇️ Dropdown do usuário
 // -------------------------------
-const userMenuButton = document.getElementById("userMenuButton");
-const userDropdown = document.getElementById("userDropdown");
+document.addEventListener("DOMContentLoaded", function() {
+  const userMenuButton = document.getElementById("userMenuButton");
+  const userDropdown = document.getElementById("userDropdown");
 
-if (userMenuButton && userDropdown) {
-  userMenuButton.addEventListener("click", () => {
-    userDropdown.classList.toggle("hidden");
-  });
+  console.log("userMenuButton:", userMenuButton);
+  console.log("userDropdown:", userDropdown);
 
-  document.addEventListener("click", (event) => {
-    if (
-      !userMenuButton.contains(event.target) &&
-      !userDropdown.contains(event.target)
-    ) {
-      userDropdown.classList.add("hidden");
-    }
-  });
-}
+  if (userMenuButton && userDropdown) {
+    userMenuButton.addEventListener("click", (e) => {
+      console.log("Botão do usuário clicado!");
+      e.preventDefault();
+      e.stopPropagation();
+      userDropdown.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        !userMenuButton.contains(event.target) &&
+        !userDropdown.contains(event.target)
+      ) {
+        userDropdown.classList.add("hidden");
+      }
+    });
+  } else {
+    console.log("Elementos do dropdown do usuário não encontrados");
+  }
+});
 
 //Gerencia toda a dashboard do usuario com sua sidebar e seções igual a do admin. Nome da função diferente mas logica parecida.
 function showSection(section) {
@@ -434,26 +444,6 @@ function toggleAddressForm() {
   const form = document.getElementById("address-form");
   form.classList.toggle("hidden");
 }
-document.addEventListener("DOMContentLoaded", function () {
-  const userMenuButton = document.getElementById("userMenuButton");
-  const userDropdown = document.getElementById("userDropdown");
-
-  if (userMenuButton && userDropdown) {
-    userMenuButton.addEventListener("click", function (e) {
-      e.preventDefault();
-      userDropdown.classList.toggle("hidden");
-    });
-
-    document.addEventListener("click", function (e) {
-      if (
-        !userMenuButton.contains(e.target) &&
-        !userDropdown.contains(e.target)
-      ) {
-        userDropdown.classList.add("hidden");
-      }
-    });
-  }
-});
 
 function validarFormularioEndereco(form) {
   const campos = form.querySelectorAll("input[required], select[required]");
@@ -613,5 +603,71 @@ function confirmarExclusao(nomeProduto, event) {
   
   // Retornar false para não submeter o formulário
   return false;
+}
+
+// Funções para página Monte seu Bolo
+function selectOption(element, category, value) {
+  // Remover seleção anterior da mesma categoria
+  document.querySelectorAll(`.option-card[data-category="${category}"]`).forEach(card => {
+    card.classList.remove('selected');
+    card.classList.remove('border-red-500', 'bg-red-50');
+    card.classList.add('border-gray-200');
+  });
+  
+  // Adicionar seleção atual
+  element.classList.add('selected');
+  element.classList.add('border-red-500', 'bg-red-50');
+  element.classList.remove('border-gray-200');
+  element.setAttribute('data-category', category);
+  
+  // Atualizar resumo
+  updateSummary(category, value);
+}
+
+function updateSummary(category, value) {
+  const displayValue = value.charAt(0).toUpperCase() + value.slice(1);
+  const elementId = `selected-${category}`;
+  const element = document.getElementById(elementId);
+  
+  if (element) {
+    element.textContent = displayValue;
+    element.classList.remove('text-gray-400');
+    element.classList.add('text-gray-800');
+  }
+}
+
+function realizarPedido() {
+  const sabor = document.getElementById('selected-sabor').textContent;
+  const recheio = document.getElementById('selected-recheio').textContent;
+  const topo = document.getElementById('selected-topo').textContent;
+  const decoracao = document.getElementById('selected-decoracao').textContent;
+  
+  // Verificar se todas as opções foram selecionadas
+  if (recheio === 'Não selecionado' || topo === 'Não selecionado' || decoracao === 'Não selecionado') {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Etapas Incompletas',
+      text: 'Por favor, complete todas as etapas antes de finalizar o pedido.',
+      confirmButtonColor: '#e53935'
+    });
+    return;
+  }
+  
+  const numeroPedido = Math.floor(1000 + Math.random() * 9000);
+  
+  Swal.fire({
+    title: `Pedido #${numeroPedido} realizado!`,
+    html: `
+      <div style="text-align:left">
+        <p><b>Sabor:</b> ${sabor}</p>
+        <p><b>Recheio:</b> ${recheio}</p>
+        <p><b>Topo:</b> ${topo}</p>
+        <p><b>Decoração:</b> ${decoracao}</p>
+      </div>
+    `,
+    icon: 'success',
+    confirmButtonText: 'OK',
+    confirmButtonColor: '#e53935',
+  });
 }
 

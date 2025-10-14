@@ -12,7 +12,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["usuario"]["role"])) {
 ?>
     
     <nav
-      class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-lg"
+      class="fixed w-full top-0 z-[60] bg-white border-b border-gray-200 shadow-lg"
     >
       <div class="max-w-7xl mx-auto px-8">
         <div class="flex justify-between items-center h-20">
@@ -47,7 +47,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["usuario"]["role"])) {
             <div
               class="text-gray-700 hover:text-cake-red p-2 rounded-xl transition-all duration-300 hover:bg-white/70 relative"
             >
-              <a href="../pages/checkout.php" class="bi bi-cart text-2xl relative">
+              <a href="../pages/checkout.php" class="bi bi-cart text-2xl relative z-10 cursor-pointer">
                 <span
                   id="cart-count"
                   class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden"
@@ -59,7 +59,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["usuario"]["role"])) {
           <?php if (!isset($_SESSION['usuario'])): ?>
             <a href="../pages/login.php" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all">Login</a>
           <?php else: ?>
-            <button id="userMenuButton" class="text-gray-700 hover:text-red-500 p-2 rounded-xl bi bi-person text-2xl"></button>
+            <button id="userMenuButton" class="text-gray-700 hover:text-red-500 p-2 rounded-xl bi bi-person text-2xl relative z-10 cursor-pointer"></button>
             <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 hidden">
               <a href="<?= $myAccountLink ?>"
                  class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-500 transition-colors">
