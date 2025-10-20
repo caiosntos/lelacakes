@@ -1,18 +1,7 @@
 <?php
 include '../assets/includes/navbar.php';
-require_once '../backend/config/database.php';
 require "../backend/controllers/ProductController.php"; 
-
-
-// Buscar usuários do banco de dados
-try {
-    $stmt = $pdo->prepare("SELECT id, nome, email, telefone, role FROM usuarios");
-    $stmt->execute();
-    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    $usuarios = [];
-    $erro_usuarios = "Erro ao carregar usuários: " . $e->getMessage();
-}
+require "../backend/controllers/AdminUserPanel.php"; 
 
 ?>
 
