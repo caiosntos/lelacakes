@@ -2,7 +2,6 @@
 include '../assets/includes/navbar.php';
 require "../backend/controllers/ProductController.php"; 
 require "../backend/controllers/AdminUserPanel.php"; 
-
 ?>
 
 <!DOCTYPE html>
@@ -75,14 +74,6 @@ require "../backend/controllers/AdminUserPanel.php";
               >
                 <i class="bi bi-people-fill w-5 h-5 mr-3"></i>
                 <span>Usuários</span>
-              </button>
-              <button
-                onclick="showSextion('configSite')"
-                id="nav-configSite"
-                class="w-full flex items-center p-3 rounded-xl text-red-700 hover:bg-red-50 hover:text-red-500 transition-colors"
-              >
-                <i class="bi bi-gear-fill w-5 h-5 mr-3"></i>
-                <span>Configurações</span>
               </button>
               <button
                 onclick="window.location.href='../backend/controllers/logout.php'"
@@ -540,162 +531,6 @@ require "../backend/controllers/AdminUserPanel.php";
                 </div>
               </div>
             </div>
-
-            <!-- Seção Configurações do Site -->
-            <div id="configSite" class="section-content hidden">
-              <h2 class="text-xl font-semibold text-gray-800 mb-8">
-                Configurações do Site
-              </h2>
-
-              <div class="space-y-8">
-                <!-- Informações da Empresa -->
-                <div class="border border-gray-200 rounded-xl p-6">
-                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Informações da Empresa</h3>
-                  <form class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa</label>
-                        <input
-                          type="text"
-                          value="Lela Cakes"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">CNPJ</label>
-                        <input
-                          type="text"
-                          placeholder="00.000.000/0000-00"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
-                      <textarea
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all h-24"
-                        placeholder="Descreva sua empresa..."
-                      >A melhor confeitaria de Joinville e Região!</textarea>
-                    </div>
-                  </form>
-                </div>
-
-                <!-- Contato -->
-                <div class="border border-gray-200 rounded-xl p-6">
-                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Informações de Contato</h3>
-                  <form class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
-                        <input
-                          type="tel"
-                          placeholder="(47) 99999-9999"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp</label>
-                        <input
-                          type="tel"
-                          placeholder="(47) 99999-9999"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                      <input
-                        type="email"
-                        placeholder="contato@lelacakes.com"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Endereço</label>
-                      <textarea
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all h-20"
-                        placeholder="Rua, número, bairro, cidade..."
-                      ></textarea>
-                    </div>
-                  </form>
-                </div>
-
-                <!-- Redes Sociais -->
-                <div class="border border-gray-200 rounded-xl p-6">
-                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Redes Sociais</h3>
-                  <form class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Instagram</label>
-                        <input
-                          type="url"
-                          placeholder="https://instagram.com/lelacakes"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Facebook</label>
-                        <input
-                          type="url"
-                          placeholder="https://facebook.com/lelacakes"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                    </div>
-                  </form>
-                </div>
-
-                <!-- Configurações de Entrega -->
-                <div class="border border-gray-200 rounded-xl p-6">
-                  <h3 class="text-lg font-semibold text-gray-800 mb-4">Configurações de Entrega</h3>
-                  <form class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Taxa de Entrega (R$)</label>
-                        <input
-                          type="number"
-                          step="0.01"
-                          placeholder="5.00"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                      <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Pedido Mínimo (R$)</label>
-                        <input
-                          type="number"
-                          step="0.01"
-                          placeholder="30.00"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Horário de Funcionamento</label>
-                      <div class="grid grid-cols-2 gap-4">
-                        <input
-                          type="time"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                        <input
-                          type="time"
-                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
-                        />
-                      </div>
-                    </div>
-                  </form>
-                </div>
-
-                <div class="flex justify-end pt-6">
-                  <button class="px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium shadow-lg">
-                    Salvar Configurações
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Modal de Gerenciar Orçamento -->
     <div id="modalOrcamento" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
