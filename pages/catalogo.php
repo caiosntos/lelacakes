@@ -1,4 +1,5 @@
 <?php
+require "../backend/controllers/ProductController.php"; 
 ?>
 
 
@@ -192,136 +193,85 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-8" id="catalogo">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="catalogo">
+          <?php if (!empty($produtos)): ?>
+            <?php foreach ($produtos as $produto): ?>
+              <?php if (strtolower($produto['status_produtos']) === 'ativo'): ?>
           <div
             class="produto group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500"
-            data-preco="25"
+                  data-preco="<?= $produto['preco'] ?>"
           >
             <div class="relative overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop"
+                      src="<?= !empty($produto['imagem_url']) ? htmlspecialchars($produto['imagem_url']) : 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop' ?>"
                 class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
-                alt="Bolo de Chocolate"
+                      alt="<?= htmlspecialchars($produto['nome']) ?>"
+                      onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'"
               />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
+                    <?php if ($produto['destaque'] == 1): ?>
               <div
                 class="absolute top-4 right-4 bg-gradient-to-r from-cake-red to-red-400 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
               >
                 Destaque
               </div>
+                    <?php else: ?>
+                      <div
+                        class="absolute top-4 right-4 bg-gradient-to-r from-red-400 to-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
+                      >
+                        <?= ucfirst(htmlspecialchars($produto['categoria'])) ?>
+              </div>
+                    <?php endif; ?>
             </div>
             <div class="p-8">
               <h5
                 class="text-2xl font-heading font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
               >
-                Bolo de chocolate
+                      <?= htmlspecialchars($produto['nome']) ?>
               </h5>
               <p class="text-gray-600 mb-4 leading-relaxed">
-                Bolo com cobertura e recheio de chocolate cremoso e irresistível
+                      <?= htmlspecialchars($produto['descricao']) ?>
               </p>
               <div class="flex items-center justify-between">
                 <p
                   class="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent"
                 >
-                  R$25
+                        R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
                 </p>
                 <button
                   onclick="openModal(this)"
-                  class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  <i class="bi bi-cart-plus mr-2"></i>Add to Cart
+                  <i class="bi bi-cart-plus mr-2"></i>Add ao carrinho
                 </button>
               </div>
             </div>
           </div>
-          <div
-            class="produto group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500"
-            data-preco="3"
-          >
-            <div class="relative overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1607478900766-efe13248b125?w=400&h=300&fit=crop"
-                class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
-                alt="Bolo de rolo"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              ></div>
-              <div
-                class="absolute top-4 right-4 bg-gradient-to-r from-green-400 to-green-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
-              >
-                Tradicional
-              </div>
-            </div>
-            <div class="p-8">
-              <h5
-                class="text-2xl font-heading font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
-              >
-                Bolo de rolo
-              </h5>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                Bolo típico nordestino com doce de goiaba artesanal
-              </p>
-              <div class="flex items-center justify-between">
-                <p
-                  class="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent"
-                >
-                  R$3
+              <?php endif; ?>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <div class="col-span-full text-center py-16">
+              <div class="bg-white rounded-3xl shadow-xl p-12">
+                <svg class="mx-auto h-16 w-16 text-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+                <h3 class="text-2xl font-heading font-bold text-gray-800 mb-4">
+                  Nenhum produto disponível
+                </h3>
+                <p class="text-gray-600 text-lg mb-8">
+                  Em breve teremos produtos incríveis para você!
                 </p>
-                <button
-                  onclick="openModal(this)"
-                  class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                <a
+                  href="montebolo.php"
+                  class="inline-block bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 >
-                  <i class="bi bi-cart-plus mr-2"></i>Add to Cart
-                </button>
+                  Monte seu Bolo Personalizado
+                </a>
               </div>
             </div>
-          </div>
-          <div
-            class="produto group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500"
-            data-preco="5"
-          >
-            <div class="relative overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop"
-                class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
-                alt="Docinhos"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              ></div>
-              <div
-                class="absolute top-4 right-4 bg-gradient-to-r from-purple-400 to-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
-              >
-                Variados
-              </div>
-            </div>
-            <div class="p-8">
-              <h5
-                class="text-2xl font-heading font-bold text-gray-800 mb-3 group-hover:text-red-500 transition-colors duration-300"
-              >
-                Docinhos
-              </h5>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                Brigadeiros, beijinho, surpresa de uva e outros deliciosos doces
-              </p>
-              <div class="flex items-center justify-between">
-                <p
-                  class="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent"
-                >
-                  R$5
-                </p>
-                <button
-                  onclick="openModal(this)"
-                  class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  <i class="bi bi-cart-plus mr-2"></i>Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+          <?php endif; ?>
         </div>
 
         <div
