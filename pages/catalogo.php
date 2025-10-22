@@ -236,13 +236,13 @@ require "../backend/controllers/ProductController.php";
               </p>
               <div class="flex items-center justify-between">
                 <p
-                  class="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent"
+                  class="text-2xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent"
                 >
                         R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
                 </p>
                 <button
                   onclick="openModal(this)"
-                  class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <i class="bi bi-cart-plus mr-2"></i>Add ao carrinho
                 </button>
