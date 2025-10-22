@@ -189,7 +189,7 @@ session_start();
                       Telefone
                     </label>
                     <input type="tel" id="telefone" name="telefone" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-red focus:outline-none transition-all duration-300 placeholder-gray-400"
-                    placeholder="(00) 0000-0000" />
+                    placeholder="(**) *****-****" />
                   </div>
                 </div>
                 <div>
@@ -216,38 +216,6 @@ session_start();
               <i class="bi bi-arrow-up-circle text-2xl">
               </i>
             </button>
-
-            <!-- Modal Esqueceu a Senha (Front-end somente) -->
-            <div id="modalEsqueci" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 items-center justify-center">
-              <div class="bg-white w-full max-w-md mx-4 rounded-2xl shadow-xl p-6">
-                <div class="flex justify-between items-center mb-4">
-                  <h3 class="text-lg font-semibold text-gray-800">Redefinir senha</h3>
-                  <button type="button" id="btnFecharEsqueci" class="text-gray-500 hover:text-gray-700">
-                    <i class="bi bi-x-lg"></i>
-                  </button>
-                </div>
-                <form id="formEsqueci" class="space-y-4">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                    <input type="email" id="emailEsqueci" class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100" readonly />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Nova senha</label>
-                    <input type="password" id="novaSenhaEsqueci" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Digite a nova senha" required />
-                    <p id="erroNovaSenha" class="text-red-500 text-xs mt-1 hidden">A senha deve ter pelo menos 6 caracteres.</p>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar nova senha</label>
-                    <input type="password" id="confirmarSenhaEsqueci" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Confirme a nova senha" required />
-                    <p id="erroConfirmarSenha" class="text-red-500 text-xs mt-1 hidden">As senhas não coincidem.</p>
-                  </div>
-                  <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" id="btnCancelarEsqueci" class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">Cancelar</button>
-                    <button type="submit" id="btnSalvarEsqueci" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Salvar</button>
-                  </div>
-                </form>
-              </div>
-            </div>
     </body>
   
   </html>

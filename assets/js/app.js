@@ -719,3 +719,51 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// --------------------------
+  // 8. Máscara de CPF
+  // --------------------------
+  const cpfInput = document.getElementById("CPF");
+
+  if (cpfInput) {
+    cpfInput.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, "");
+      
+      if (value.length > 11) value = value.slice(0, 11);
+
+      if (value.length > 9) {
+        value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, "$1.$2.$3-$4");
+      } else if (value.length > 6) {
+        value = value.replace(/^(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
+      } else if (value.length > 3) {
+        value = value.replace(/^(\d{3})(\d{0,3})/, "$1.$2");
+      }
+      e.target.value = value; 
+    });
+  }
+
+    // --------------------------
+  // 9. Máscara de telefone
+  // --------------------------
+  const telefoneInput = document.getElementById("telefone");
+
+  if (telefoneInput) {
+    telefoneInput.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, ""); // remove tudo que não é número
+      
+      if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
+      
+      if (value.length > 10) {
+        // formato (99) 99999-9999
+        value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+      } else if (value.length > 5) {
+        // formato (99) 9999-9999
+        value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (value.length > 2) {
+        // formato (99) 9999
+        value = value.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+      } else {
+        value = value.replace(/^(\d*)/, "($1");
+      }
+      e.target.value = value;
+    });
+  }
