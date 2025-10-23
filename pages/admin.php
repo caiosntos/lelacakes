@@ -445,7 +445,7 @@ require "../backend/controllers/AdminUserPanel.php";
                       <tr>
                         <td colspan="7" class="border border-gray-200 px-4 py-8 text-center text-gray-500">
                           <i class="bi bi-person-x text-2xl mb-2 block"></i>
-                          Nenhum usuário encontrado
+                          Nenhum usuário encontrado.
                         </td>
                       </tr>
                     <?php else: ?>
