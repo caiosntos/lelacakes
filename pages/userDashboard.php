@@ -1,5 +1,7 @@
   <?php
 include '../assets/includes/navbar.php';
+require_once "../backend/controllers/AuthManager.php";
+requireLogin();
 ?>
 
 <!DOCTYPE html>

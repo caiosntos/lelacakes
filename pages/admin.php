@@ -2,6 +2,8 @@
 include '../assets/includes/navbar.php';
 require "../backend/controllers/ProductController.php"; 
 require "../backend/controllers/AdminUserPanel.php"; 
+require_once "../backend/controllers/AuthManager.php";
+requireRole('admin');
 ?>
 
 <!DOCTYPE html>
