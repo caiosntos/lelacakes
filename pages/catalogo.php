@@ -200,6 +200,7 @@ require "../backend/controllers/ProductController.php";
           <div
             class="produto group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500"
                   data-preco="<?= $produto['preco'] ?>"
+                  data-id="<?= $produto['idproduto'] ?>"
           >
             <div class="relative overflow-hidden">
               <img

@@ -13,6 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="../assets/site/style.css" />
     <script src="../assets/js/app.js" defer></script>
     <script>
@@ -44,164 +48,9 @@
             class="w-20 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto"
           ></div>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div class="lg:col-span-2 space-y-6">
-            <div
-              class="bg-white rounded-3xl shadow-xl p-6 transform hover:scale-[1.02] transition-all duration-300"
-            >
-              <div class="flex items-center space-x-6">
-                <img
-                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=120&h=120&fit=crop"
-                  class="w-24 h-24 rounded-2xl object-cover shadow-lg"
-                  alt="Bolo de Chocolate"
-                />
-                <div class="flex-1">
-                  <h3 class="text-2xl font-heading font-bold text-gray-800 mb-2">
-                    Bolo de Chocolate
-                  </h3>
-                  <p class="text-gray-600 mb-3">
-                    Delicioso bolo com cobertura cremosa
-                  </p>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                      <button
-                        onclick="updateQuantity('item1', -1)"
-                        class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center text-red-500 font-bold transition-all duration-300"
-                      >
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <span
-                        id="qty-item1"
-                        class="text-xl font-bold text-gray-800 min-w-8 text-center"
-                        >2</span
-                      >
-                      <button
-                        onclick="updateQuantity('item1', 1)"
-                        class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center text-red-500 font-bold transition-all duration-300"
-                      >
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold gradient-text">R$50</p>
-                      <button
-                        onclick="removeItem('item1')"
-                        class="text-red-400 hover:text-red-600 text-sm mt-1 transition-colors duration-300"
-                      >
-                        <i class="bi bi-trash mr-1"></i> Remover
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-white rounded-3xl shadow-xl p-6 transform hover:scale-[1.02] transition-all duration-300"
-            >
-              <div class="flex items-center space-x-6">
-                <img
-                  src="https://images.unsplash.com/photo-1607478900766-efe13248b125?w=120&h=120&fit=crop"
-                  class="w-24 h-24 rounded-2xl object-cover shadow-lg"
-                  alt="Bolo de Rolo"
-                />
-                <div class="flex-1">
-                  <h3 class="text-2xl font-heading font-bold text-gray-800 mb-2">
-                    Bolo de Rolo
-                  </h3>
-                  <p class="text-gray-600 mb-3">
-                    Tradicional bolo nordestino com goiabada
-                  </p>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                      <button
-                        onclick="updateQuantity('item2', -1)"
-                        class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center text-red-500 font-bold transition-all duration-300"
-                      >
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <span
-                        id="qty-item2"
-                        class="text-xl font-bold text-gray-800 min-w-8 text-center"
-                        >1</span
-                      >
-                      <button
-                        onclick="updateQuantity('item2', 1)"
-                        class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center text-red-500 font-bold transition-all duration-300"
-                      >
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold gradient-text">R$3</p>
-                      <button
-                        onclick="removeItem('item2')"
-                        class="text-red-400 hover:text-red-600 text-sm mt-1 transition-colors duration-300"
-                      >
-                        <i class="bi bi-trash mr-1"></i> Remover
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-white rounded-3xl shadow-xl p-6 transform hover:scale-[1.02] transition-all duration-300"
-            >
-              <div class="flex items-center space-x-6">
-                <img
-                  src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=120&h=120&fit=crop"
-                  class="w-24 h-24 rounded-2xl object-cover shadow-lg"
-                  alt="Docinhos"
-                />
-                <div class="flex-1">
-                  <h3 class="text-2xl font-heading font-bold text-gray-800 mb-2">
-                    Docinhos Variados
-                  </h3>
-                  <p class="text-gray-600 mb-3">
-                    Brigadeiro, beijinho e surpresa de uva
-                  </p>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                      <button
-                        onclick="updateQuantity('item3', -1)"
-                        class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center text-red-500 font-bold transition-all duration-300"
-                      >
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <span
-                        id="qty-item3"
-                        class="text-xl font-bold text-gray-800 min-w-8 text-center"
-                        >3</span
-                      >
-                      <button
-                        onclick="updateQuantity('item3', 1)"
-                        class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center text-red-500 font-bold transition-all duration-300"
-                      >
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold gradient-text">R$15</p>
-                      <button
-                        onclick="removeItem('item3')"
-                        class="text-red-400 hover:text-red-600 text-sm mt-1 transition-colors duration-300"
-                      >
-                        <i class="bi bi-trash mr-1"></i> Remover
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="text-center pt-6">
-              <a
-                href="catalogo.php"
-                class="inline-flex items-center space-x-3 text-red-500 hover:text-red-600 font-semibold text-lg transition-all duration-300 hover:scale-105"
-              >
-                <i class="bi bi-arrow-left"></i>
-                <span>Continue Comprando</span>
-              </a>
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12" id="cart-grid">
+          <div class="lg:col-span-2 space-y-6" id="cart-items-container">
+            <!-- Itens do carrinho serão inseridos aqui dinamicamente -->
           </div>
           <div class="space-y-8">
             <div class="bg-white rounded-3xl shadow-xl p-8 sticky top-32">
@@ -213,23 +62,15 @@
               </h2>
               <div class="space-y-4 mb-6">
                 <div class="flex justify-between text-lg text-gray-600">
-                  <span>Subtotal (6 itens):</span>
-                  <span id="subtotal">R$68</span>
-                </div>
-                <div class="flex justify-between text-lg text-gray-600">
-                  <span>Taxa de entrega:</span>
-                  <span>R$5</span>
-                </div>
-                <div class="flex justify-between text-lg text-green-600">
-                  <span>Desconto:</span>
-                  <span>-R$3</span>
+                  <span id="subtotal-label">Subtotal (0 itens):</span>
+                  <span id="subtotal">R$ 0,00</span>
                 </div>
               </div>
               <div class="border-t-2 border-gray-200 pt-6 mb-8">
                 <div class="flex justify-between items-center">
                   <span class="text-2xl font-bold text-gray-800">Total:</span>
-                  <span id="total" class="text-3xl font-bold gradient-text"
-                    >R$70</span
+                  <span id="total" class="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent"
+                    >R$ 0,00</span
                   >
                 </div>
               </div>
