@@ -439,7 +439,7 @@ requireRole('admin');
                       <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Email</th>
                       <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Telefone</th>
                       <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Tipo</th>
-                      <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Ações</th>
+                      <!--<th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">Ações</th>-->
                     </tr>
                   </thead>
                   <tbody id="tabelaUsuarios">
@@ -466,7 +466,7 @@ requireRole('admin');
                               <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">Cliente</span>
                             <?php endif; ?>
                           </td>
-                          <td class="border border-gray-200 px-4 py-3 text-sm">
+                          <!--<td class="border border-gray-200 px-4 py-3 text-sm">
                             <div class="flex space-x-2">
                               <button 
                                 onclick="editarUsuario(<?= $usuario['id'] ?>)"
@@ -490,7 +490,7 @@ requireRole('admin');
                                 </button>
                               <?php endif; ?>
                             </div>
-                          </td>
+                          </td>-->
                         </tr>
                       <?php endforeach; ?>
                     <?php endif; ?>
