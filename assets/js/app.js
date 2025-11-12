@@ -1223,3 +1223,18 @@ document.addEventListener('DOMContentLoaded', function() {
       e.target.value = value;
     });
   }
+
+  function applyMaskCEP(input) {
+  // Remove tudo que não for número
+  let cep = input.value.replace(/\D/g, "");
+
+  // Limita a 8 dígitos
+  cep = cep.substring(0, 8);
+
+  // Aplica a máscara: 00000-000
+  if (cep.length > 5) {
+    cep = cep.substring(0, 5) + "-" + cep.substring(5);
+  }
+
+  input.value = cep;
+}

@@ -193,11 +193,45 @@ session_start();
                   </div>
                 </div>
                 <div>
-                  <label for="endereco" class="block text-gray-700 font-semibold mb-3">
-                    Endereço de Entrega
+                  <div class="grid grid-cols-2 gap-6">
+                    <div>
+                      <label for="endereco" class="block text-gray-700 font-semibold mb-3">
+                        Endereço
+                      </label>
+                      <input type="text" id="endereco" name="endereco" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-red focus:outline-none transition-all duration-300 placeholder-gray-400"
+                      placeholder="Digite seu endereço" />
+                    </div>
+                    <div>
+                      <label for="numero" class="block text-gray-700 font-semibold mb-3">
+                        Número
+                      </label>
+                      <input type="text" id="numero" name="numero" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-red focus:outline-none transition-all duration-300 placeholder-gray-400"
+                      placeholder="Número" />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label for="cep" class="block text-gray-700 font-semibold mb-3">
+                    CEP
                   </label>
-                  <input type="text" id="endereco" name="endereco" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-red focus:outline-none transition-all duration-300 placeholder-gray-400"
-                  placeholder="Digite seu endereço completo" />
+                  <input type="text" id="cep" name="cep" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-red focus:outline-none transition-all duration-300 placeholder-gray-400"
+                  placeholder="00000-000" maxlength="9"  oninput="applyMaskCEP(this)"/>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                  <div>
+                    <label for="estado" class="block text-gray-700 font-semibold mb-3">
+                      Estado
+                    </label>
+                    <input type="text" id="estado" name="estado" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-red focus:outline-none transition-all duration-300 placeholder-gray-400"
+                    placeholder="Estado" />
+                  </div>
+                  <div>
+                    <label for="cidade" class="block text-gray-700 font-semibold mb-3">
+                      Cidade
+                    </label>
+                    <input type="text" id="cidade" name="cidade" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cake-red focus:outline-none transition-all duration-300 placeholder-gray-400"
+                    placeholder="Cidade" />
+                  </div>
                 </div>
                 <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-4 rounded-2xl text-lg transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                   Salvar Registro
