@@ -98,8 +98,8 @@
 
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center selected"
-                  onclick="selectOption(this, 'sabor', 'chocolate')"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all selected"
+                  onclick="selectOption(this, 'sabor', 'Chocolate')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Chocolate
@@ -114,8 +114,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
-                  onclick="selectOption(this, 'sabor', 'morango')"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'sabor', 'Morango')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Morango
@@ -130,8 +130,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
-                  onclick="selectOption(this, 'sabor', 'redvelvet')"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'sabor', 'Red Velvet')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Red Velvet
@@ -151,17 +151,19 @@
               <div class="flex items-center mb-6">
                 <div
                   class="bg-gray-300 text-gray-600 rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4"
+                  id="step-2-indicator"
                 >
                   2
                 </div>
-                <h2 class="text-3xl font-heading font-bold text-gray-400">
+                <h2 class="text-3xl font-heading font-bold text-gray-400" id="step-2-title">
                   Recheio
                 </h2>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 opacity-50">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'recheio', 'Brigadeiro')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Brigadeiro
@@ -176,7 +178,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'recheio', 'Prestígio')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Prestígio
@@ -191,7 +194,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'recheio', 'Ganache')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Ganache
@@ -211,17 +215,19 @@
               <div class="flex items-center mb-6">
                 <div
                   class="bg-gray-300 text-gray-600 rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4"
+                  id="step-3-indicator"
                 >
                   3
                 </div>
-                <h2 class="text-3xl font-heading font-bold text-gray-400">
+                <h2 class="text-3xl font-heading font-bold text-gray-400" id="step-3-title">
                   Topo
                 </h2>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 opacity-50">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'topo', 'Flores')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Flores
@@ -236,7 +242,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'topo', 'Frutas')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Frutas
@@ -251,7 +258,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'topo', 'Nozes')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Nozes
@@ -271,17 +279,19 @@
               <div class="flex items-center mb-6">
                 <div
                   class="bg-gray-300 text-gray-600 rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4"
+                  id="step-4-indicator"
                 >
                   4
                 </div>
-                <h2 class="text-3xl font-heading font-bold text-gray-400">
+                <h2 class="text-3xl font-heading font-bold text-gray-400" id="step-4-title">
                   Decoração
                 </h2>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 opacity-50">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'decoracao', 'Flores Comestíveis')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Flores Comestíveis
@@ -296,7 +306,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'decoracao', 'Customizado')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Customizado
@@ -311,7 +322,8 @@
                   </div>
                 </div>
                 <div
-                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+                  class="option-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-red-300 transition-all"
+                  onclick="selectOption(this, 'decoracao', 'Chantilly')"
                 >
                   <h3 class="text-xl font-semibold text-gray-800 mb-2">
                     Chantilly

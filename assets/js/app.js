@@ -1064,11 +1064,14 @@ function confirmarExclusao(nomeProduto, event) {
 // Funções para página Monte seu Bolo
 function selectOption(element, category, value) {
   // Remover seleção anterior da mesma categoria
-  document.querySelectorAll(`.option-card[data-category="${category}"]`).forEach(card => {
-    card.classList.remove('selected');
-    card.classList.remove('border-red-500', 'bg-red-50');
-    card.classList.add('border-gray-200');
-  });
+  const parentSection = element.closest('.bg-white.rounded-3xl');
+  if (parentSection) {
+    parentSection.querySelectorAll('.option-card').forEach(card => {
+      card.classList.remove('selected');
+      card.classList.remove('border-red-500', 'bg-red-50');
+      card.classList.add('border-gray-200');
+    });
+  }
   
   // Adicionar seleção atual
   element.classList.add('selected');
@@ -1078,10 +1081,18 @@ function selectOption(element, category, value) {
   
   // Atualizar resumo
   updateSummary(category, value);
+  
+  // Atualizar indicadores de etapa
+  updateStepIndicator(category);
 }
 
 function updateSummary(category, value) {
-  const displayValue = value.charAt(0).toUpperCase() + value.slice(1);
+  // Formatar o valor para exibição (capitalizar primeira letra)
+  let displayValue = value;
+  if (value && value.length > 0) {
+    displayValue = value.charAt(0).toUpperCase() + value.slice(1);
+  }
+  
   const elementId = `selected-${category}`;
   const element = document.getElementById(elementId);
   
@@ -1090,6 +1101,65 @@ function updateSummary(category, value) {
     element.classList.remove('text-gray-400');
     element.classList.add('text-gray-800');
   }
+}
+
+function updateStepIndicator(category) {
+  const stepMap = {
+    'sabor': { step: 1, nextStep: 2 },
+    'recheio': { step: 2, nextStep: 3 },
+    'topo': { step: 3, nextStep: 4 },
+    'decoracao': { step: 4, nextStep: null }
+  };
+  
+  const stepInfo = stepMap[category];
+  if (!stepInfo) return;
+  
+  // Ativar etapa atual
+  const currentIndicator = document.getElementById(`step-${stepInfo.step}-indicator`);
+  const currentTitle = document.getElementById(`step-${stepInfo.step}-title`);
+  
+  if (currentIndicator) {
+    currentIndicator.classList.remove('bg-gray-300', 'text-gray-600');
+    currentIndicator.classList.add('bg-red-500', 'text-white');
+  }
+  
+  if (currentTitle) {
+    currentTitle.classList.remove('text-gray-400');
+    currentTitle.classList.add('text-gray-800');
+  }
+  
+  // Ativar próxima etapa se existir
+  if (stepInfo.nextStep) {
+    const nextIndicator = document.getElementById(`step-${stepInfo.nextStep}-indicator`);
+    const nextTitle = document.getElementById(`step-${stepInfo.nextStep}-title`);
+    
+    if (nextIndicator) {
+      nextIndicator.classList.remove('bg-gray-300', 'text-gray-600');
+      nextIndicator.classList.add('bg-gray-200', 'text-gray-500');
+    }
+    
+    if (nextTitle) {
+      nextTitle.classList.remove('text-gray-400');
+      nextTitle.classList.add('text-gray-500');
+    }
+  }
+  
+  // Atualizar indicadores visuais no topo
+  updateTopStepIndicators(stepInfo.step);
+}
+
+function updateTopStepIndicators(activeStep) {
+  const indicators = document.querySelectorAll('.step-indicator');
+  indicators.forEach((indicator, index) => {
+    const stepNumber = index + 1;
+    if (stepNumber <= activeStep) {
+      indicator.classList.remove('bg-gray-300');
+      indicator.classList.add('bg-red-500', 'text-white');
+    } else {
+      indicator.classList.remove('bg-red-500', 'text-white');
+      indicator.classList.add('bg-gray-300');
+    }
+  });
 }
 
 function realizarPedido() {
