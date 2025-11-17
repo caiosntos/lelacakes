@@ -286,52 +286,60 @@ require_once "../backend/controllers/AuthManager.php";
               </div>
             </div>
             
-            <div id="section-endereco" class="section-content hidden">
-              <div class="flex justify-between items-center mb-8">
-                <h2 class="text-xl font-semibold text-gray-800">
-                  Meus Endereços
-                </h2>
-                <button
-                  onclick="toggleAddressForm()"
-                  class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                >
-                  <i class="bi bi-plus-circle mr-2"></i>
-                  Alterar endereço
-                </button>
-              </div>
-              <div class="space-y-4 mb-6">
-                <div class="border border-gray-200 rounded-xl p-6 relative">
-                  <div class="flex justify-between items-start">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-2">
-                        <span
-                          class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium mr-3"
-                          >Principal</span
-                        >
-                        <span
-                          class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium"
-                          >Casa</span
-                        >
-                      </div>
-                      <h3 class="font-semibold text-gray-800 mb-2">
-                        Casa - Endereço Principal
-                      </h3>
-                      <p class="text-gray-600 text-sm mb-1">
-                        Rua das Flores, 123 - Apto 45
-                      </p>
-                      <p class="text-gray-600 text-sm mb-1">
-                        Centro - Joinville/SC
-                      </p>
-                      <p class="text-gray-600 text-sm">CEP: 89200-000</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<div id="section-endereco" class="section-content hidden">
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-xl font-semibold text-gray-800">
+      Meus Endereços
+    </h2>
+    <button
+      onclick="toggleAddressForm()"
+      class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+    >
+      <i class="bi bi-plus-circle mr-2"></i>
+      Alterar endereço
+    </button>
+  </div>
+
+  <div class="space-y-4 mb-6">
+    <div class="border border-gray-200 rounded-xl p-6 relative">
+      <div class="flex justify-between items-start">
+        <div class="flex-1">
+
+          <!-- TAGS: principal / tipo -->
+          <div class="flex items-center mb-2">
+            <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium mr-3">
+              Principal
+            </span>
+            <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
+              Casa
+            </span>
           </div>
+
+          <!-- TÍTULO -->
+          <h3 class="font-semibold text-gray-800 mb-2">
+          Endereço Principal
+          </h3>
+
+          <!-- ENDEREÇO -->
+          <p class="text-gray-600 text-sm mb-1">
+            <?= htmlspecialchars($endereco) ?> <?= $numero ? ", Nº $numero" : "" ?>
+          </p>
+
+          <!-- CIDADE E ESTADO -->
+          <p class="text-gray-600 text-sm mb-1">
+            <?= htmlspecialchars($cidade) ?> - <?= htmlspecialchars($estado) ?>
+          </p>
+
+          <!-- CEP -->
+          <p class="text-gray-600 text-sm">
+            CEP: <?= htmlspecialchars($cep) ?>
+          </p>
+
         </div>
       </div>
     </div>
+  </div>
+</div>
 
     <!-- Modal de Detalhes do Pedido -->
     <div id="modalDetalhes" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
