@@ -286,60 +286,164 @@ require_once "../backend/controllers/AuthManager.php";
               </div>
             </div>
             
-<div id="section-endereco" class="section-content hidden">
-  <div class="flex justify-between items-center mb-8">
-    <h2 class="text-xl font-semibold text-gray-800">
-      Meus Endereços
-    </h2>
-    <button
-      onclick="toggleAddressForm()"
-      class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-    >
-      <i class="bi bi-plus-circle mr-2"></i>
-      Alterar endereço
-    </button>
-  </div>
+            <div id="section-endereco" class="section-content hidden">
+              <div class="flex justify-between items-center mb-8">
+                <h2 class="text-xl font-semibold text-gray-800">
+                  Meus Endereços
+                </h2>
+                <button
+                  onclick="abrirModalEndereco()"
+                  class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                >
+                  <i class="bi bi-plus-circle mr-2"></i>
+                  Alterar endereço
+                </button>
+              </div>
 
-  <div class="space-y-4 mb-6">
-    <div class="border border-gray-200 rounded-xl p-6 relative">
-      <div class="flex justify-between items-start">
-        <div class="flex-1">
+              <div class="space-y-4 mb-6">
+                <div class="border border-gray-200 rounded-xl p-6 relative">
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
 
-          <!-- TAGS: principal / tipo -->
-          <div class="flex items-center mb-2">
-            <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium mr-3">
-              Principal
-            </span>
-            <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
-              Casa
-            </span>
+                      <!-- TAGS: principal / tipo -->
+                      <div class="flex items-center mb-2">
+                        <span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium mr-3">
+                          Principal
+                        </span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
+                          Casa
+                        </span>
+                      </div>
+
+                      <!-- TÍTULO -->
+                      <h3 class="font-semibold text-gray-800 mb-2">
+                      Endereço Principal
+                      </h3>
+
+                      <!-- ENDEREÇO -->
+                      <p class="text-gray-600 text-sm mb-1">
+                        <?= htmlspecialchars($endereco) ?> <?= $numero ? ", Nº $numero" : "" ?>
+                      </p>
+
+                      <!-- CIDADE E ESTADO -->
+                      <p class="text-gray-600 text-sm mb-1">
+                        <?= htmlspecialchars($cidade) ?> - <?= htmlspecialchars($estado) ?>
+                      </p>
+
+                      <!-- CEP -->
+                      <p class="text-gray-600 text-sm">
+                        CEP: <?= htmlspecialchars($cep) ?>
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <div id="modalEndereco" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+          <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md m-4">
+            <div class="p-6">
+
+              <!-- Header -->
+              <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+                <h2 class="text-2xl font-semibold text-gray-800">Editar Endereço</h2>
+                <button onclick="fecharModalEndereco()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+
+              <!-- Formulário -->
+              <form method="POST" action="../backend/controllers/AddressController.php" id="formEndereco">
+                
+                <!-- ENDEREÇO -->
+                <div class="mb-4">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Endereço</label>
+                  <input
+                    type="text"
+                    name="endereco"
+                    id="endereco_edit"
+                    value="<?= htmlspecialchars($endereco) ?>"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    placeholder="Ex: Rua das Flores"
+                  />
+                </div>
+
+                <!-- NÚMERO -->
+                <div class="mb-4">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Número</label>
+                  <input
+                    type="text"
+                    name="numero"
+                    id="numero_edit"
+                    value="<?= htmlspecialchars($numero) ?>"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    placeholder="Ex: 123"
+                  />
+                </div>
+
+                <!-- CIDADE -->
+                <div class="mb-4">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Cidade</label>
+                  <input
+                    type="text"
+                    name="cidade"
+                    id="cidade_edit"
+                    value="<?= htmlspecialchars($cidade) ?>"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    placeholder="Ex: Joinville"
+                  />
+                </div>
+
+                <!-- ESTADO -->
+                <div class="mb-4">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Estado</label>
+                  <input
+                    type="text"
+                    name="estado"
+                    id="estado_edit"
+                    maxlength="2"
+                    value="<?= htmlspecialchars($estado) ?>"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all uppercase"
+                    placeholder="SC"
+                  />
+                </div>
+
+                <!-- CEP -->
+                <div class="mb-6">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">CEP</label>
+                  <input
+                    type="text"
+                    name="cep"
+                    id="cep_edit"
+                    maxlength="9"
+                    value="<?= htmlspecialchars($cep) ?>"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    placeholder="00000-000"
+                  />
+                </div>
+
+                <!-- Botões -->
+                <div class="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+                  <button
+                    type="button"
+                    onclick="fecharModalEndereco()"
+                    class="px-6 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                  >
+                    Salvar Alterações
+                  </button>
+                </div>
+
+              </form>
+            </div>
           </div>
-
-          <!-- TÍTULO -->
-          <h3 class="font-semibold text-gray-800 mb-2">
-          Endereço Principal
-          </h3>
-
-          <!-- ENDEREÇO -->
-          <p class="text-gray-600 text-sm mb-1">
-            <?= htmlspecialchars($endereco) ?> <?= $numero ? ", Nº $numero" : "" ?>
-          </p>
-
-          <!-- CIDADE E ESTADO -->
-          <p class="text-gray-600 text-sm mb-1">
-            <?= htmlspecialchars($cidade) ?> - <?= htmlspecialchars($estado) ?>
-          </p>
-
-          <!-- CEP -->
-          <p class="text-gray-600 text-sm">
-            CEP: <?= htmlspecialchars($cep) ?>
-          </p>
-
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 
     <!-- Modal de Detalhes do Pedido -->
     <div id="modalDetalhes" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
