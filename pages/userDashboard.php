@@ -1,4 +1,4 @@
-  <?php
+<?php
 include '../assets/includes/navbar.php';
 require_once "../backend/controllers/AuthManager.php";
 ?>
@@ -141,14 +141,15 @@ require_once "../backend/controllers/AuthManager.php";
                     class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                     readonly
                   />
-                  <a
-                    href="redefinirSenha.php"
+                  <button 
+                    type="button"
+                    onclick="abrirModalSenha()"
                     class="text-red-500 text-sm hover:text-red-600 transition-colors mt-1 block"
                   >
                     Alterar senha
-                  </a>
+                </button>
                 </div>
-              </div> <!-- fecha grid corretamente -->
+              </div> 
             </form>
             <form id="deleteAccountForm" action="../backend/controllers/DeleteAccount.php" method="POST">
               <div class="flex justify-end space-x-4 pt-6">
@@ -341,6 +342,62 @@ require_once "../backend/controllers/AuthManager.php";
               </div>
             </div>
 
+            <!-- Modal -->
+            <div id="modalSenha" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+              <!-- Conteúdo do modal -->
+              <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
+                <form id="formAlterarSenha" 
+                      action="../backend/controllers/ChangePassword.php" 
+                      method="POST" 
+                      class="space-y-4">
+
+                  <div>
+                    <input 
+                      type="password" 
+                      name="senha_atual" 
+                      id="senha_atual"
+                      placeholder="Senha atual" 
+                      required 
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" 
+                    />
+                    <div id="erro-senha-atual" class="text-red-500 text-sm hidden"></div>
+                  </div>
+
+                  <div>
+                    <input 
+                      type="password" 
+                      name="nova_senha" 
+                      id="nova_senha"
+                      placeholder="Nova senha" 
+                      required 
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" 
+                    />
+                    <div id="erro-nova-senha" class="text-red-500 text-sm hidden"></div>
+                  </div>
+
+                  <div>
+                    <input 
+                      type="password" 
+                      name="confirmar_senha" 
+                      id="confirmar_senha"
+                      placeholder="Confirmar nova senha" 
+                      required 
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" 
+                    />
+                    <div id="erro-confirmar-senha" class="text-red-500 text-sm hidden"></div>
+                  </div>
+
+                  <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="fecharModalSenha()" 
+                            class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors">
+                      Cancelar
+                    </button>
+                  <button type="button" id="btnDeleteSenha" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Salvar</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
         <div id="modalEndereco" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
           <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md m-4">
             <div class="p-6">
@@ -466,6 +523,31 @@ require_once "../backend/controllers/AuthManager.php";
     </div>
 
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+
+        const deleteSenha = document.getElementById("btnDeleteSenha");
+        const deleteSenhaForm = document.getElementById("formAlterarSenha");
+
+        if (deleteSenha && deleteSenhaForm) {
+          deleteSenha.addEventListener("click", function () {
+            Swal.fire({
+              title: "Tem certeza?",
+              text: "Deseja realmente alterar sua senha?",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#d33",
+              cancelButtonColor: "#6b7280",
+              confirmButtonText: "Sim, alterar!",
+              cancelButtonText: "Cancelar"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                deleteSenhaForm.submit();
+              }
+            });
+          });
+        }
+
+      });
       // Função para abrir modal de detalhes
       function abrirModalDetalhes(pedidoId) {
         const modal = document.getElementById('modalDetalhes');

@@ -119,9 +119,13 @@ session_start();
                 <p class="text-center text-gray-600 mb-4">
                   Esqueceu sua senha?
                 </p>
-                <a href="redefinirSenhaLogin.php" id="linkRecuperar" class="block text-center text-cake-red hover:text-red-700 font-medium transition-colors duration-300">
+                <button 
+                  type="button"
+                  onclick="abrirModalSenha()"
+                  class="block mx-auto text-center text-cake-red hover:text-red-700 font-medium transition-colors duration-300"
+                >
                   Clique aqui para recuperar
-                </a>
+                </button>
               </div>
             </div>
               
@@ -250,6 +254,46 @@ session_start();
               <i class="bi bi-arrow-up-circle text-2xl">
               </i>
             </button>
+
+                        <!-- Modal -->
+            <div id="modalSenha" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+              <!-- Conteúdo do modal -->
+              <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
+                <form id="formAlterarSenha" 
+                      action="../backend/controllers/ChangePasswordLogin.php" 
+                      method="POST" 
+                      class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                        <input type="email" id="emailEsqueci" name="emailEsqueci"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" 
+                            placeholder="E-mail" required />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nova senha</label>
+                        <input type="password" id="novaSenhaEsqueci" name="novaSenhaEsqueci"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            placeholder="Digite a nova senha" required />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar nova senha</label>
+                        <input type="password" id="confirmarSenhaEsqueci" name="confirmarSenhaEsqueci"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            placeholder="Confirme a nova senha" required />
+                    </div>
+
+                    <div class="flex justify-end gap-2 mt-4">
+                        <a type="button" href="login.php" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-colors">Cancelar</a>
+                        <button type="button" id="btnDeleteSenha"
+                                class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        Salvar
+                        </button>
+                    </div>
+
+                </form>
+              </div>
+            </div>
     </body>
   
   </html>
